@@ -1,117 +1,165 @@
-import React from 'react';
-import ListItems from './ListItems';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import React from "react";
+import ListItems from "./ListItems";
+import { library, text } from "@fortawesome/fontawesome-svg-core";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
-library.add(faTrash)
+library.add(faTrash);
 
 class Tasks extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
-      items:[],
-      currentItem:{
-        text:'',
-        assignee:'',
-        priority:'',
-        key:''
-      }
-    }
+      items: [],
+      currentItem: {
+        text: "",
+        assignee: "",
+        priority: "",
+        key: "",
+      },
+    };
     this.addItem = this.addItem.bind(this);
     this.handleInput = this.handleInput.bind(this);
     this.deleteItem = this.deleteItem.bind(this);
     this.setUpdate = this.setUpdate.bind(this);
   }
-  addItem(e){
+  addItem(e) {
     e.preventDefault();
     const newItem = this.state.currentItem;
-    if(newItem.text !==""){
+    console.log(newItem);
+    if (newItem.text !== "") {
       const items = [...this.state.items, newItem];
-    this.setState({
-      items: items,
-      currentItem:{
-        text:'',
-        assignee:'',
-        priority:'',
-        key:''
-      }
-    })
+      this.setState({
+        items: items,
+        currentItem: {
+          text: "",
+          assignee: "",
+          priority: "",
+          key: "",
+        },
+      });
     }
   }
   handleInput(event) {
     const { name, value } = event.target;
+    console.log(event.target.value);
 
-    this.setState(prevValue => {
-      if (name === "task") {
-        return {
+    if (name === "task") {
+      this.setState({
+        ...this.state,
+        currentItem: {
+          ...this.state.currentItem,
           text: value,
-          assignee: prevValue.assignee,
-          priority: prevValue.priority,
-          key: Date.now()
-        };
-      } else if (name === "assignee") {
-        return {
-          task: prevValue.task,
+        },
+      });
+    }
+
+    if (name === "assignee") {
+      this.setState({
+        ...this.state,
+        currentItem: {
+          ...this.state.currentItem,
           assignee: value,
-          priority: prevValue.priority,
-          key: Date.now()
-        };
-      } else if (name === "priority") {
-        return {
-          task: prevValue.task,
-          assignee: prevValue.assignee,
+        },
+      });
+    }
+
+    if (name === "priority") {
+      this.setState({
+        ...this.state,
+        currentItem: {
+          ...this.state.currentItem,
           priority: value,
-          key: Date.now()
-        };
-      }
+        },
+      });
+    }
+    //this.setState((prevValue) => {
+    //console.log(prevValue);
+    //if (name === "task") {
+    //return {
+    //text: prevValue.text + value,
+    //assignee: prevValue.assignee,
+    //priority: prevValue.priority,
+    //key: Date.now(),
+    //};
+    //} else if (name === "assignee") {
+    //return {
+    //task: prevValue.task,
+    //assignee: value,
+    //priority: prevValue.priority,
+    //key: Date.now(),
+    //};
+    //} else if (name === "priority") {
+    //return {
+    //task: prevValue.task,
+    //assignee: prevValue.assignee,
+    //priority: value,
+    //key: Date.now(),
+    //};
+    //}
+    //});
+  }
+  deleteItem(key) {
+    const filteredItems = this.state.items.filter((item) => item.key !== key);
+    this.setState({
+      items: filteredItems,
     });
   }
-  deleteItem(key){
-    const filteredItems= this.state.items.filter(item =>
-      item.key!==key);
-    this.setState({
-      items: filteredItems
-    })
-
-  }
-  setUpdate(text,assignee, priority, key){
-    console.log("items:"+this.state.items);
+  setUpdate(text, assignee, priority, key) {
+    console.log("items:" + this.state.items);
     const items = this.state.items;
-    items.map(item=>{      
-      if(item.key===key){
-        console.log(item.key +"    "+key)
-        item.text= text;
-        item.assignee=assignee;
-        item.priority=priority;
+    items.map((item) => {
+      if (item.key === key) {
+        console.log(item.key + "    " + key);
+        item.text = text;
+        item.assignee = assignee;
+        item.priority = priority;
       }
-    })
+    });
     this.setState({
-      items: items
-    })
-    
-   
+      items: items,
+    });
   }
- render(){
-  return (
-    <div className="App">
-      <header>
-        <form onSubmit={this.addItem}>
-          <input type="text" placeholder="Enter task" name="task" value= {this.state.currentItem.text} onChange={this.handleInput}></input>
-          <input type="text" placeholder="Enter assignee" name="assignee" value= {this.state.currentItem.assignee} onChange={this.handleInput}></input>
-          <input type="text" placeholder="Enter priority" name="priority" value= {this.state.currentItem.priority} onChange={this.handleInput}></input>
-          <button type="submit">Add</button>
-        </form>
-        <p>{this.state.items.text}</p>
-        <p>{this.state.items.assignee}</p>
-        <p>{this.state.items.priority}</p>
-        
-          <ListItems items={this.state.items} deleteItem={this.deleteItem} setUpdate={this.setUpdate}/>
-        
-      </header>
-    </div>
-  );
- }
-}
+  render() {
+    return (
+      <div className="App">
+        <header>
+          <form onSubmit={this.addItem}>
+            <input
+              type="text"
+              placeholder="Enter task"
+              name="task"
+              value={this.state.currentItem.text}
+              onChange={this.handleInput}
+            ></input>
+            <input
+              type="text"
+              placeholder="Enter assignee"
+              name="assignee"
+              value={this.state.currentItem.assignee}
+              onChange={this.handleInput}
+            ></input>
+            <input
+              type="text"
+              placeholder="Enter priority"
+              name="priority"
+              value={this.state.currentItem.priority}
+              onChange={this.handleInput}
+            ></input>
+            <button type="submit">Add</button>
+          </form>
+          <p>{this.state.items.text}</p>
+          <p>{this.state.items.assignee}</p>
+          <p>{this.state.items.priority}</p>
 
+          <ListItems
+            items={this.state.items}
+            deleteItem={this.deleteItem}
+            setUpdate={this.setUpdate}
+          />
+        </header>
+      </div>
+    );
+  }
+}
 
 export default Tasks;
