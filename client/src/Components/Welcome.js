@@ -21,6 +21,12 @@ class Welcome extends Component {
           <li>
             <NavLink to='/Requests'>Requests</NavLink>
           </li>
+          <li>
+            <NavLink to='/Schedule'>Schedule</NavLink>
+          </li>
+          <li>
+            <NavLink to='/TaskApp'>TaskApp</NavLink>
+          </li>
         </ul>
       </nav>
       </div>

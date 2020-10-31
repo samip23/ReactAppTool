@@ -52,5 +52,24 @@
     font-size: 18px;
     text-align: center;
   }
+
+
+  .date-picker label {
+        position: relative;
+    left: 761px;
+    top: 27px;
+}
   
+
+  .MuiFormControl-root, .MuiTextField-root {
+    width: 100%;
+    display:flex !important;
+    flex-direction: column;
+    margin: 5px auto !important;
+  }
+
+
+  .MuiFormControl-root, .MuiTextField-root .MuiInputBase-root, .MuiInput-root, .MuiInput-underline, .MuiInputBase-formControl, .MuiInput-formControl {
+    width: 200px;
   
+  }

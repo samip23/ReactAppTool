@@ -18,6 +18,11 @@ app.use((req, res, next) => {
 
 app.post("/api/form", (req, res) => {
   nodemailer.createTestAccount((err, account) => {
+
+    let subjectHeader = req.body.subjectHeader;
+
+    console.log(subjectHeader);
+
     const htmlEmail = `
             <h3>Contact Details</h3>
             <ul>
@@ -43,7 +48,7 @@ app.post("/api/form", (req, res) => {
       from: "test@testaccount.com",
       to: "randy.mann@ethereal.email",
       replyTo: "test@testaccount.com",
-      subject: "New Message",
+      subject: subjectHeader,
       text: req.body.message,
       html: htmlEmail,
     };

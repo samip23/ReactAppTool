@@ -6,6 +6,9 @@ import SignIn from "../Components/SignIn/index";
 import Tasks from "../Components/Tasks";
 import Projects from "../Components/Projects";
 import Requests from "../Components/Requests";
+import GanttChart from '../Components/GanttChart';
+import Schedule from "../Components/Schedule";
+import TaskApp from "../Components/TaskApp";
 
 function Routes() {
     return (
@@ -14,7 +17,9 @@ function Routes() {
             <Route path='/Welcome'  component={Welcome} />
             <Route path='/Tasks'   component={Tasks} /> 
             <Route path='/Projects' component={Projects} /> 
-            <Route path='/Requests' component={Requests} />         
+            <Route path='/Requests' component={Requests} />  
+            <Route path='/Schedule' component={Schedule} />   
+            <Route path='/TaskApp' component={TaskApp} />    
         </Switch>
     )
 }
