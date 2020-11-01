@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Route, NavLink, Switch, Redirect } from 'react-router-dom';
-import Tasks from "./Tasks";
+import Tasks from "../archive/Tasks";
 
 const { PureComponent } = React;
 

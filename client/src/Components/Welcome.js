@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import { Route, NavLink, Switch, Redirect, Link } from 'react-router-dom';
-import Projects from "./Projects";
-import Tasks from "./Tasks";
 
 class Welcome extends Component {
 
@@ -13,9 +11,6 @@ class Welcome extends Component {
         <nav>
         <ul>
           <li>
-            <NavLink to='/Tasks'>Tasks</NavLink>
-          </li>
-          <li>
             <NavLink to='/Projects'>Projects</NavLink>
           </li>
           <li>
@@ -26,6 +21,9 @@ class Welcome extends Component {
           </li>
           <li>
             <NavLink to='/TaskApp'>TaskApp</NavLink>
+          </li>
+          <li>
+            <NavLink to='/TaskListApp'>TaskListApp</NavLink>
           </li>
         </ul>
       </nav>

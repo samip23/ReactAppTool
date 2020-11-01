@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ListItems from "./ListItems";
+import ListItems from "../Components/ListItems";
 import { library, text } from "@fortawesome/fontawesome-svg-core";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import jsPDF from "jspdf";

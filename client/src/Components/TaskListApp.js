@@ -1,17 +1,10 @@
 import React from 'react';
-import TaskForm from './TaskForm';
-import "./TaskApp.css";
-import { Link } from 'react-router-dom';
+import TaskList from './TaskList';
+import { NavLink} from 'react-router-dom';
 
-class TaskApp extends React.Component {
+class TaskListApp extends React.Component {
 
     state = { tasks: [], selectedTask: null };
-
-    onTaskSubmit = (tasks) => {
-        this.setState({
-            tasks: tasks
-        })
-    }
 
     render() {
         return (
@@ -41,17 +34,18 @@ class TaskApp extends React.Component {
                 <div class="ui grid">
                     <div class="four wide column">
                         <div class="ui vertical fluid tabular menu">
-                            <Link to="/TaskApp" class="item active">
+                            <NavLink to="/TaskApp" class="item">
                                 Add Task
-                            </Link>
-                            <Link to="/TaskListApp" class="item" active>
+                            </NavLink>
+                            <NavLink to="/TaskListApp" class="item active">
                                 Task List
-                            </Link>
+                            </NavLink>
                         </div>
                     </div>
                     <div class="twelve wide stretched column">
                         <div class="ui segment">
-                            <TaskForm onFormSubmit={this.onTaskSubmit} />
+                            <header>List of Tasks</header>
+                            <TaskList/>
                         </div>
                     </div>
                 </div>
@@ -60,4 +54,4 @@ class TaskApp extends React.Component {
     }
 }
 
-export default TaskApp;
+export default TaskListApp;
