@@ -1,6 +1,6 @@
 import React from 'react';
 import TaskList from './TaskList';
-import { NavLink} from 'react-router-dom';
+import { NavLink, Link} from 'react-router-dom';
 
 class TaskListApp extends React.Component {
 
@@ -10,15 +10,15 @@ class TaskListApp extends React.Component {
         return (
             <div>
                 <div class="ui secondary  menu">
-                    <a class="active item">
+                <Link to="/Welcome" class="item">
                         Home
-                    </a>
-                    <a class="item">
+                </Link>
+                    <Link to="/TaskApp" class="active item">
                         Project Management
-                    </a>
-                    <a class="item">
+                    </Link>
+                    <Link to="/DefectApp" class="item">
                         Defect Management
-                    </a>
+                    </Link>
                     <div class="right menu">
                         <div class="item">
                             <div class="ui icon input">
@@ -44,8 +44,8 @@ class TaskListApp extends React.Component {
                     </div>
                     <div class="twelve wide stretched column">
                         <div class="ui segment">
-                            <header>List of Tasks</header>
-                            <TaskList/>
+                            <h1>Tasks</h1>
+                            <TaskList />
                         </div>
                     </div>
                 </div>

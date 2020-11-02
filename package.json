@@ -41,7 +41,9 @@
     "redux-logger": "^3.0.6",
     "redux-persist": "^6.0.0",
     "rsuite": "^4.8.4",
-    "save": "^2.4.0"
+    "sass": "^1.28.0",
+    "save": "^2.4.0",
+    "uniqid": "^5.2.0"
   },
   "devDependencies": {},
   "scripts": {

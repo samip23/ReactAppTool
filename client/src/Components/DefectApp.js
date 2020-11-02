@@ -1,10 +1,9 @@
 import React from 'react';
-import TaskForm from './TaskForm';
-import "./TaskApp.css";
 import { Link } from 'react-router-dom';
-import DefectApp from "./DefectApp";
+import TaskApp from "./TaskApp";
+import DefectForm from "./DefectForm";
 
-class TaskApp extends React.Component {
+class DefectApp extends React.Component {
 
     state = { tasks: [], selectedTask: null };
 
@@ -21,10 +20,10 @@ class TaskApp extends React.Component {
                     <Link to="/Welcome" class="item">
                         Home
                 </Link>
-                    <Link to="/TaskApp" class="active item">
+                    <Link to="/TaskApp" class="item">
                         Project Management
                     </Link>
-                    <Link to="/DefectApp" class="item">
+                    <Link to="/DefectApp" class="active item">
                         Defect Management
                     </Link>
                     <div class="right menu">
@@ -42,17 +41,17 @@ class TaskApp extends React.Component {
                 <div class="ui grid">
                     <div class="four wide column">
                         <div class="ui vertical fluid tabular menu">
-                            <Link to="/TaskApp" class="item active">
-                                Add Task
+                            <Link to="/DefectApp" class="item active">
+                                Add Defect
                             </Link>
-                            <Link to="/TaskListApp" class="item">
-                                Task List
+                            <Link to="/DefectListApp" class="item">
+                                Defect List
                             </Link>
                         </div>
                     </div>
                     <div class="twelve wide stretched column">
                         <div class="ui segment">
-                            <TaskForm onFormSubmit={this.onTaskSubmit} />
+                            <DefectForm onFormSubmit={this.onDefectSubmit} />
                         </div>
                     </div>
                 </div>
@@ -61,4 +60,4 @@ class TaskApp extends React.Component {
     }
 }
 
-export default TaskApp;
+export default DefectApp;

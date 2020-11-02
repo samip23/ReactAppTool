@@ -1,35 +1,45 @@
 import React, { Component } from "react";
-import { Route, NavLink, Switch, Redirect, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class Welcome extends Component {
 
-    render(){
-    return (
-        <div>
-        <h1>Welcome Page</h1>
+  render() {
+    let todayDate = new Date();
 
-        <nav>
-        <ul>
-          <li>
-            <NavLink to='/Projects'>Projects</NavLink>
-          </li>
-          <li>
-            <NavLink to='/Requests'>Requests</NavLink>
-          </li>
-          <li>
-            <NavLink to='/Schedule'>Schedule</NavLink>
-          </li>
-          <li>
-            <NavLink to='/TaskApp'>TaskApp</NavLink>
-          </li>
-          <li>
-            <NavLink to='/TaskListApp'>TaskListApp</NavLink>
-          </li>
-        </ul>
-      </nav>
+    return (
+      <div>
+        <div class="ui secondary  menu">
+          <Link to="/Welcome" class="active item">
+            Home
+                </Link>
+          <Link to="/TaskApp" class="item">
+            Project Management
+                </Link>
+          <Link to="/DefectApp" class="item">
+            Defect Management
+                </Link>
+          <div class="right menu">
+            <div class="item">
+              <div class="ui icon input">
+                <input type="text" placeholder="Search..." />
+                <i class="search link icon"></i>
+              </div>
+            </div>
+            <a class="ui item">
+              Logout
+                    </a>
+          </div>
+        </div>
+        <div class="twelve wide stretched column">
+          <div class="ui segment">
+            <h1>Welcome!</h1>
+            <br />
+            <p>Today is {todayDate.toLocaleString()}</p>
+          </div>
+        </div>
       </div>
-    );
-}
+    )
+  }
 }
 
 export default Welcome;
