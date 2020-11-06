@@ -18,6 +18,12 @@ class Welcome extends Component {
           <Link to="/DefectApp" class="item">
             Defect Management
                 </Link>
+                <Link to="/Forum" class="item">
+            Forum
+                </Link>
+                <Link to="/VacationApp" class="item">
+                        HR
+                </Link>
           <div class="right menu">
             <div class="item">
               <div class="ui icon input">

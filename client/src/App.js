@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import history from './services/history';
 import Routes from './routes/index';
-import Header from "./Components/Header";
+import Header from "./Components/Utlities/Header";
 
 function App() {
   return (

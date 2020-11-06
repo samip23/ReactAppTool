@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import TaskApp from "./TaskApp";
+import TaskApp from "./TaskApp/TaskApp";
 import DefectForm from "./DefectForm";
 
 class DefectApp extends React.Component {
@@ -26,6 +26,12 @@ class DefectApp extends React.Component {
                     <Link to="/DefectApp" class="active item">
                         Defect Management
                     </Link>
+                    <Link to="/Forum" class="item">
+                        Forum
+                </Link>
+                <Link to="/VacationApp" class="item">
+                        HR
+                </Link>
                     <div class="right menu">
                         <div class="item">
                             <div class="ui icon input">

@@ -32,6 +32,7 @@ export const taskReducer = (state = initialState, action) => {
       }; */
 
       case ADD_TASK:
+        console.log('invoked')
         return {
           ...state,
           task: { ...state.task,

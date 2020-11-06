@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
+import "./DefectForum.scss";
 
 const DefectForm = () => {
 
@@ -21,6 +22,19 @@ const DefectForm = () => {
 
     const { title, summary, assignee, severity, priority } = newDefect;
 
+    const onInputChange = (event) => {
+        const { name, value } = event.target;
+
+        if (name === "title") {
+            setNewDefect({ ...newDefect, title: value });
+        }
+
+        if (name === "severity") {
+            setNewDefect({ ...newDefect, severity: value });
+        }
+
+    };
+
     return (
         <div>
             <form id="defect-form" className="ui form" /* onSubmit={onFormSubmit} */>
@@ -30,16 +44,15 @@ const DefectForm = () => {
                         name="title"
                         type="text"
                         value={title}
-                        //onChange={onInputChange}
+                        onChange={onInputChange}
                     />
                 </div>
                 <div className="field">
                     <label>Summary:</label>
-                    <input
+                    <textarea
                         name="summary"
-                        type="text"
                         value={summary}
-                        //onChange={onInputChange}
+                    //onChange={onInputChange}
                     />
                 </div>
                 <div className="field">
@@ -48,7 +61,7 @@ const DefectForm = () => {
                         name="assignee"
                         type="text"
                         value={assignee}
-                        //onChange={onInputChange}
+                    //onChange={onInputChange}
                     />
                 </div>
                 <div className="field">
@@ -62,17 +75,17 @@ const DefectForm = () => {
                 </div>
                 <div className="field">
                     <label>Severity:</label>
-                    <input
-                        name="severity"
-                        type="text"
-                        value={severity}
-                    //onChange={onInputChange}
-                    />
+                    <select value={severity} name="severity" onChange={onInputChange}>
+                        <option value="Blocker">Blocker</option>
+                        <option value="Major">Major</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Minor">Minor</option>
+                    </select>
                 </div>
-                <div>
+                <div className="defect-form-btn">
                     <button class="ui button" type="submit"> {/*onClick={onFormSubmit}*/}
                         Submit
-          </button>
+                        </button>
                 </div>
             </form>
         </div>
