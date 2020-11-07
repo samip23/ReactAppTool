@@ -1,7 +1,7 @@
-import React, { useState, useEffect  } from 'react';
+import React, { useState, useEffect } from 'react';
 import { LinearProgress } from '@material-ui/core';
-import {useSelector, useDispatch} from "react-redux"
-import {setProgress} from "../../redux/TaskForm/action.js"
+import { useSelector, useDispatch } from "react-redux"
+import { setProgress } from "../../redux/TaskForm/action.js"
 import "./TaskDetail.scss";
 
 const TaskDetail = ({ idx }) => {
@@ -11,28 +11,25 @@ const TaskDetail = ({ idx }) => {
     const [progressV, setProgressV] = useState();
     const tasks = useSelector(state => state.taskform.task);
     const dispatch = useDispatch();
-    
+
     const task = tasks[idx];
 
     const progressV_by_idx = useSelector(state => {
         if (state.taskform.task[idx] !== undefined) {
             return state.taskform.task[idx].progressV;
-        } 
+        }
         return 0;
     })
-    
+
     function handleProgressUpdate(e) {
         setProgressV(e.target.value)
 
     }
 
     function handleButtonClick() {
-        console.log(progressV)
         if (progressV > 0 && progressV < 101) {
-        
-        console.log("button", progressV)
-        dispatch(setProgress(idx, progressV));
-        setProgressV("");
+            dispatch(setProgress(idx, progressV));
+            setProgressV("");
         }
         else alert("Invalid value was entered")
     }
@@ -62,16 +59,16 @@ const TaskDetail = ({ idx }) => {
                             <td data-label="Task Name">{task.taskName}</td>
                             <td data-label="Task Assignee">{task.taskAssignee}</td>
                             <td data-label="Task Priority">{task.taskPriority}</td>
-                            <td style={{width: "120%"}} data-label="Task Progress">
+                            <td style={{ width: "120%" }} data-label="Task Progress">
                                 <p>
-                                    <input type="text" style={{width: "80%"}} placeholder="Enter Progress (%)" value={progressV} onChange={handleProgressUpdate} />
-                                    <button style={{margin: "0 4px"}}  type="submit" onClick={handleButtonClick}>Set</button>
+                                    <input type="text" style={{ width: "80%" }} placeholder="Enter Progress (%)" value={progressV} onChange={handleProgressUpdate} />
+                                    <button style={{ margin: "0 4px" }} type="submit" onClick={handleButtonClick}>Set</button>
                                 </p>
                                 <LinearProgress variant="determinate" value={progressV_by_idx} />
                                 <label>Current Progress: {progressV_by_idx}%</label>
                             </td>
-                            <td style={{width: "120%"}} data-label="Task Deadline">{task.date.substring(0,10)}</td>
-                            <td data-label="Days to Deadline">{Math.round((Date.parse(task.date) - todayDate.getTime()) / 1000/60/60/24)} Days Remaining</td>
+                            <td style={{ width: "120%" }} data-label="Task Deadline">{task.date.substring(0, 10)}</td>
+                            <td data-label="Days to Deadline">{Math.round((Date.parse(task.date) - todayDate.getTime()) / 1000 / 60 / 60 / 24)} Days Remaining</td>
                         </tr>
                     </tbody>
                 </table>

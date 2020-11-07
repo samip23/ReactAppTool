@@ -3,12 +3,14 @@ import { datePickerReducer } from "./DatePicker/reducer";
 import { taskReducer } from "./TaskForm/reducer";
 import { ganttReducer } from "./GanttForm/reducer";
 import { vacationReducer } from "./VacationForm/reducer";
+import { defectReducer } from "./Defect";
 
 const rootReducer = combineReducers({
   datepicker: datePickerReducer,
   taskform: taskReducer,
   gantt: ganttReducer,
-  vacation: vacationReducer
+  vacation: vacationReducer,
+  defect: defectReducer
 });
 
 export default rootReducer;

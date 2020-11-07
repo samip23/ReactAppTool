@@ -44,6 +44,9 @@ class VacationChartApp extends Component {
                             <Link to="/VacationChartApp" class="item active">
                                 Vacation Chart
                                 </Link>
+                                <Link to="/TimesheetFormApp" class="item">
+                                Timesheet
+                                </Link>
                     </div>
                 </div>
                 <div class="twelve wide stretched column">

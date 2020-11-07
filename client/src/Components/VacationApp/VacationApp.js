@@ -52,6 +52,9 @@ class VacationApp extends React.Component {
                             <Link to="/VacationChartApp" class="item">
                                 Vacation Chart
                                 </Link>
+                                <Link to="/TimesheetFormApp" class="item">
+                                Timesheet
+                                </Link>
                         </div>
                     </div>
                     <div class="twelve wide stretched column">

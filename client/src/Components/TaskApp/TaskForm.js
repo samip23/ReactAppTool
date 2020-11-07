@@ -25,7 +25,6 @@ const TaskForm = () => {
   const date_ = useSelector((state) => state.datepicker.date);
 
   useEffect(() => {
-    console.log(tasks_)
     setTasks(tasks_);
   }, [tasks_]);
 
