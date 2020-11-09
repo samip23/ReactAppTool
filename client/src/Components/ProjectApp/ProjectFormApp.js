@@ -55,11 +55,13 @@ class ProjectFormApp extends React.Component {
                             <NavLink to="/ProjectFormApp" class="item active">
                                 Project Form
                             </NavLink>
+                            <NavLink to="/ProjectListApp" class="item">
+                                Project List
+                            </NavLink>
                         </div>
                     </div>
                     <div class="twelve wide stretched column">
                         <div class="ui segment">
-                            <h1>Add Project</h1>
                             <ProjectForm />
                         </div>
                     </div>

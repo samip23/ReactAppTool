@@ -1,8 +1,8 @@
 import React from 'react';
-import TaskList from './TaskList';
 import { NavLink, Link } from 'react-router-dom';
+import ProjectList from "./ProjectList";
 
-class TaskListApp extends React.Component {
+class ProjectListApp extends React.Component {
 
     state = { tasks: [], selectedTask: null };
 
@@ -43,7 +43,7 @@ class TaskListApp extends React.Component {
                             <NavLink to="/TaskApp" class="item">
                                 Add Task
                             </NavLink>
-                            <NavLink to="/TaskListApp" class="item active">
+                            <NavLink to="/TaskListApp" class="item">
                                 Task List
                             </NavLink>
                             <NavLink to="/GanttChart" class="item">
@@ -55,15 +55,14 @@ class TaskListApp extends React.Component {
                             <NavLink to="/ProjectFormApp" class="item">
                                 Project Form
                             </NavLink>
-                            <NavLink to="/ProjectListApp" class="item">
+                            <NavLink to="/ProjectListApp" class="item active">
                                 Project List
                             </NavLink>
                         </div>
                     </div>
                     <div class="twelve wide stretched column">
                         <div class="ui segment">
-                            <h1>Tasks</h1>
-                            <TaskList />
+                            <ProjectList />
                         </div>
                     </div>
                 </div>
@@ -72,4 +71,4 @@ class TaskListApp extends React.Component {
     }
 }
 
-export default TaskListApp;
+export default ProjectListApp;

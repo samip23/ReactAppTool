@@ -1,7 +1,6 @@
 import React from 'react';
 
 const TaskItem = ({ idx, task, onTaskSelect }) => {
-    console.log("show me", task)
     return (
         <div onClick={() => onTaskSelect(idx)} className="item">
             <div className="content">

@@ -62,6 +62,9 @@ class TaskApp extends React.Component {
                             <NavLink to="/ProjectFormApp" class="item">
                                 Project Form
                             </NavLink>
+                            <NavLink to="/ProjectListApp" class="item">
+                                Project List
+                            </NavLink>
                         </div>
                     </div>
                     <div class="twelve wide stretched column">

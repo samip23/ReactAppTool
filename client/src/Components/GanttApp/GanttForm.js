@@ -21,7 +21,6 @@ const GanttForm = () => {
     //const tasks_ = useSelector((state) => state.taskform.task);
     const tasks_ = useSelector((state) => state.gantt.task);
     const date_ = useSelector(state => state.gantt.date);
-    console.log('date_', date_)
     const {start, end} = date_;
     useEffect(() => {
         //console.log(tasks_)
@@ -41,7 +40,6 @@ const GanttForm = () => {
     const onFormSubmit = (event) => {
         event.preventDefault();
 
-        console.log('button', start, end)
         if (taskName !== "") {
             const id = uniqid();
             setNewTask({ ...newTask, id });

@@ -31,8 +31,13 @@ const DefectForm = () => {
     //     console.log(title,summary,status, priority)
     // },[title,summary,status,priority])
 
-    const defects = useSelector(state => state.defect.defects);
+    const [defects, setDefects] = useState([]);
 
+    const defects_ = useSelector(state => state.defect.defects);
+
+    useEffect(() => {
+        setDefects(defects_);
+      }, [defects_]);
 
     const onInputChange = (event) => {
         const { name, value } = event.target;
@@ -44,6 +49,7 @@ const DefectForm = () => {
         if (title !== "" && summary !== "" && expectedResults !== "") {
             //generate uniqid and insert it as first param
             const id = uniqid();
+            setNewDefect({ ...newDefect, id});
             dispatch(addDefect(id, title, summary, expectedResults, actualResults, steps, status, assignee, priority, severity));
             document.getElementById("defect-form").submit();
         } else {

@@ -3,6 +3,7 @@ import DatePicker from "react-datepicker";
 import { selectDate } from "../../redux/DatePicker/action.js"
 import { selectGanttDate } from "../../redux/GanttForm/action"
 import { selectVacationDate } from "../../redux/VacationForm/action.js"
+import { selectProjectDate } from "../../redux/ProjectApp/action.js"
 import {useSelector, useDispatch} from "react-redux";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -24,7 +25,7 @@ const DatePickerApp = ({type}) => {
     if (mode == "task") dispatch(selectDate(date ));
     if (mode == "gantt") dispatch(selectGanttDate(date, key));
     if (mode == "vacation") dispatch(selectVacationDate(date, key));
-
+    if (mode == "project") dispatch(selectProjectDate(date, key));
   } 
 
 

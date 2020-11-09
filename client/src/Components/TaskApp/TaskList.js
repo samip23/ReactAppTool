@@ -37,8 +37,8 @@ const TaskList = () => {
 
 
     const tasks_ = useSelector((state) => state.taskform.task);
-    const task_data = Object.values(tasks_);
-    console.log("tasklist",tasks_)
+    let task_data = Object.values(tasks_);
+    task_data = task_data.slice(1);
     const [selectedTask, setSelectedTask] = useState(null);
 
     const onTaskSelect = (key) => {

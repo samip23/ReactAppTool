@@ -4,6 +4,7 @@ import DefectItem from "./DefectItem";
 import { useSelector } from "react-redux";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
+import { Bar } from 'react-chartjs-2';
 
 const DefectList = () => {
 
@@ -13,72 +14,179 @@ const DefectList = () => {
         const orientation = "portrait"; // portrait or landscape
         const marginLeft = 40;
         const doc = new jsPDF(orientation, unit, size);
-    
+
         doc.setFontSize(15);
-    
+
         const title = "Defects Report";
         const headers = [["Title", "Summary", "Expected Results", "Actual Results", "Steps", "Status", "Assignee", "Priority", "Severity"]];
         const data = defect_data.map((elt) => [
-          elt.title,
-          elt.summary,
-          elt.expect,
-          elt.actual,
-          elt.steps,
-          elt.status,
-          elt.assignee,
-          elt.priority,
-          elt.severity
+            elt.title,
+            elt.summary,
+            elt.expect,
+            elt.actual,
+            elt.steps,
+            elt.status,
+            elt.assignee,
+            elt.priority,
+            elt.severity
         ]);
-    
+
         let content = {
-          startY: 50,
-          head: headers,
-          body: data,
+            startY: 50,
+            head: headers,
+            body: data,
         };
-    
+
         doc.text(title, marginLeft, 40);
         doc.autoTable(content);
         doc.save("defect_report.pdf");
-      };
+    };
 
 
     const defects_ = useSelector((state) => state.defect.defects);
-    const defect_data = Object.values(defects_);
+    const defect_data = Object.values(defects_).slice(1);
     const [selectedDefect, setSelectedDefect] = useState(null);
+
+    const [activeIndex, setActiveIndex] = useState(null);
+
+    const countBlockers = defect_data.filter(defect => defect.severity === "Blocker");
+    const blockerCounted = countBlockers.length;
+    const countMajors = defect_data.filter(defect => defect.severity === "Major");
+    const majorCounted = countMajors.length;
+    const countMediums = defect_data.filter(defect => defect.severity === "Medium");
+    const mediumCounted = countMediums.length;
+    const countLows = defect_data.filter(defect => defect.severity === "Low");
+    const lowCounted = countLows.length;
+
+    const state = {
+        labels: ["Defects"],
+        datasets: [
+            {
+                label: "Blockers",
+                backgroundColor: 'rgba(75,192,192,1)',
+                borderColor: 'rgba(0,0,0,1)',
+                borderWidth: 2,
+                data: [blockerCounted],
+            },
+            {
+                label: "Majors",
+                backgroundColor: 'rgba(51,79,234,1)',
+                borderColor: 'rgba(0,0,0,1)',
+                borderWidth: 2,
+                data: [majorCounted],
+            },
+            {
+                label: "Mediums",
+                backgroundColor: 'rgba(247,191,24,1)',
+                borderColor: 'rgba(0,0,0,1)',
+                borderWidth: 2,
+                data: [mediumCounted],
+            },
+            {
+                label: "Lows",
+                backgroundColor: 'rgba(214,60,241,1)',
+                borderColor: 'rgba(0,0,0,1)',
+                borderWidth: 2,
+                data: [lowCounted],
+            }
+        ],
+    };
+
+    const onTitleClick = (index) => {
+        const newIndex = activeIndex === index ? -1 : index
+        setActiveIndex(newIndex);
+    }
 
     const onDefectSelect = (key) => {
         setSelectedDefect(key);
     };
 
     if (defects_ != null && Object.keys(defects_).length > 1) {
-        
-        const keys = Object.keys(defects_);
 
-        const renderedList = keys.map((key) => {
-            if (key !== "id") {
+        //const keys = Object.keys(defects_);
+
+        const renderedItems = defect_data.map((defect, index) => {
+            if (defect.title != "") {
+                const active = index === activeIndex ? 'active' : '';
+
                 return (
-                    <div class="item">
-                        <DefectItem
-                            idx ={key}
-                            onDefectSelect={() => onDefectSelect(key)}
-                            defect={defects_[key]}
-                        />
+                    <div key={defect.title}>
+                        <div className={`title ${active}`} onClick={() => onTitleClick(index)}>
+                            <i className="dropdown icon"></i>
 
-                    </div>
+                            {defect.title}
+                        </div>
+                        <div className={`content ${active}`}>
+                            <p>
+                                <label>Summary: </label>{defect.summary}
+                            </p>
+                            <p>
+                                <label>Status: </label>{defect.status}
+                            </p>
+                            <p>
+                                <label>Assignee: </label>{defect.assignee}
+                            </p>
+                            <p>
+                                <label>Expected Results: </label> {defect.expect}
+                            </p>
+                            <p>
+                                <label>Actual Results: </label> {defect.actuals}
+                            </p>
+                            <p>
+                                <label>Steps: </label> {defect.steps}
+                            </p>
+                            <p>
+                                <label>Severity: </label>{defect.severity}
+                            </p>
+                            <p>
+                                <label>Priority: </label>{defect.priority}
+                            </p>
+                        </div>
+                    </div >
                 );
             }
-        } 
-        );
+        });
+
 
         return (
-            <div className="ui celled list">
-                {renderedList}
+            <div>
+                <h3>List of Defects</h3>
+                <div className="ui styled accordion">
+                    {renderedItems}
+
+                    {/*
                 <br />
                 <DefectDetail idx={selectedDefect}/>
                 <br />
-                <button class="ui button" onClick={exportPDF}>
-                    Generate Report
+                */}
+                </div>
+                <br />
+                <div>
+                    <button class="ui button" onClick={exportPDF}>
+                        Generate Report
                 </button>
+                </div>
+                <br />
+                <div>
+                    <Bar
+                        data={state}
+                        options={
+                            {
+                                title: {
+                                    display: true,
+                                    text: '# of Defects by Severity',
+                                    fontSize: 20,
+                                },
+                                scales: {
+                                    yAxes: [{
+                                        ticks: {
+                                            beginAtZero: true,
+                                        }
+                                    }]
+                                }
+                            }}
+                    />
+                </div>
             </div>
         )
     }

@@ -1,62 +1,45 @@
 import React, { useEffect, useState } from "react";
 import DatePickerApp from "../Utlities/DatePickerApp";
 import { useSelector, useDispatch } from "react-redux";
-import { addTask } from "../../redux/TaskForm/action.js";
 import uniqid from "uniqid";
 import { Segment } from "semantic-ui-react";
+import { addProject } from "../../redux/ProjectApp/action.js";
 
 const ProjectForm = () => {
-    const [newTask, setNewTask] = useState({
-        taskName: "",
-        taskAssignee: "",
-        taskPriority: "",
-        date: new Date(),
+    const [newProject, setNewProject] = useState({
+        projectName: "",
+        projectAssignee: "",
+        projectMilestones: "",
+        startDate_: new Date(),
+        endDate_: new Date(),
         id: "",
-        progressV: 0,
-        inputProgress: null
     });
 
-    const [tasks, setTasks] = useState([]);
-    const [startDate, setStartDate] = useState();
-    const { taskName, taskAssignee, taskPriority, date } = newTask;
+    const [projects, setProjects] = useState([]);
+    const { projectName, projectAssignee, projectMilestones, startDate_, endDate_, id} = newProject;
     const dispatch = useDispatch();
 
-    const tasks_ = useSelector((state) => state.taskform.task);
-    const date_ = useSelector((state) => state.datepicker.date);
-
-    const [inputFields, setInputField] = useState([
-        { stageName: "", startDate: new Date(), endDate: new Date() },
-    ]);
+    const projects_ = useSelector((state) => state.project.project);
+    const date_ = useSelector(state => state.project.date);
+    const {start, end} = date_;
 
     useEffect(() => {
-        console.log(tasks_)
-        setTasks(tasks_);
-    }, [tasks_]);
+        setProjects(projects_);
+    }, [projects_, start, end]);
 
     const onInputChange = (event) => {
         const { name, value } = event.target;
-
-        if (name === "taskName") {
-            setNewTask({ ...newTask, taskName: value });
-        }
-
-        if (name === "taskAssignee") {
-            setNewTask({ ...newTask, taskAssignee: value });
-        }
-
-        if (name === "taskPriority") {
-            setNewTask({ ...newTask, taskPriority: value });
-        }
+        setNewProject({ ...newProject, [name]: value });
     };
 
     const onFormSubmit = (event) => {
         event.preventDefault();
 
-        if (taskName !== "" && taskAssignee !== "" && taskPriority !== "") {
+        if (projectName !== "" && projectAssignee !== "" && projectMilestones !== "") {
             const id = uniqid();
-            setNewTask({ ...newTask, date: date_, id });
-            dispatch(addTask(taskName, taskAssignee, taskPriority, date_, id));
-            document.getElementById("task-form").submit();
+            setNewProject({ ...newProject, id });
+            dispatch(addProject(projectName, projectAssignee, projectMilestones, start,end,id));
+            document.getElementById("project-form").submit();
         } else {
             alert("Make sure all fields have been entered");
         }
@@ -68,61 +51,53 @@ const ProjectForm = () => {
                 <div className="field">
                     <label>Project Name:</label>
                     <input
-                        name="taskName"
+                        name="projectName"
                         type="text"
-                        value={taskName}
+                        value={projectName}
                         onChange={onInputChange}
                     />
                 </div>
                 <div className="field">
                     <label>Assigned To:</label>
-                    <input
-                        name="taskAssignee"
+                    <textarea
+                        name="projectAssignee"
                         type="text"
-                        value={taskAssignee}
+                        rows="2"
+                        value={projectAssignee}
+                        onChange={onInputChange}
+                    />
+                </div>
+                <div className="field">
+                    <label>Project Milestones:</label>
+                    <textarea
+                        name="projectMilestones"
+                        type="text"
+                        rows="4"
+                        value={projectMilestones}
                         onChange={onInputChange}
                     />
                 </div>
                 <Segment.Group horizontal>
-                    {inputFields.map((inputField, index) => (
-                        <div key={index}>
-                            <Segment>
-                                <div className="field">
-                                    <label>Stage:</label>
-                                    <input
-                                        name="stageName"
-                                        type="text"
-                                        value={inputField.stageName}
-                                        onChange={onInputChange}
-                                    />
-                                </div>
-                            </Segment>
-                            <Segment>
-                                <div className="field">
-                                    <label>Start Date:</label>
-                                    <DatePickerApp type={{ mode: "project" }} />
-                                </div>
-                            </Segment>
-                            <Segment>
-                                <div className="field">
-                                    <label>End Date:</label>
-                                    <DatePickerApp type={{ mode: "project" }} />
-                                </div>
-                            </Segment>
-                            <div>
-                                <button>+</button>
-                                <button>-</button>
-                            </div>
+                    <Segment>
+                        <div className="field">
+                            <label>Start Date:</label>
+                            <DatePickerApp type={{ mode: "project", key:1}} />
                         </div>
-                    ))}
+                    </Segment>
+                    <Segment>
+                        <div className="field">
+                            <label>End Date:</label>
+                            <DatePickerApp type={{ mode: "project", key: 2 }} />
+                        </div>
+                    </Segment>
                 </Segment.Group>
-                <div className="task-form-btn">
+                <div className="project-form-btn">
                     <button onClick={onFormSubmit} class="ui button" type="submit">
-                        Submit
-          </button>
+                        Add Project
+                    </button>
                 </div>
             </form>
-        </div>
+        </div >
     );
 };
 export default ProjectForm;

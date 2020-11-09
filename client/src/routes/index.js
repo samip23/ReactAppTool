@@ -12,6 +12,7 @@ import VacationChartApp from "../Components/VacationApp/VacationChartApp";
 import TimesheetFormApp from "../Components/TimesheetApp/TimesheetFormApp";
 import ProjectFormApp from "../Components/ProjectApp/ProjectFormApp";
 import DefectListApp from "../Components/DefectApp/DefectListApp";
+import ProjectListApp from "../Components/ProjectApp/ProjectListApp";
 
 function Routes() {
     return (
@@ -29,6 +30,7 @@ function Routes() {
             <Route path="/VacationChartApp" component={VacationChartApp} />
             <Route path="/TimesheetFormApp" component={TimesheetFormApp} />
             <Route path="/ProjectFormApp" component={ProjectFormApp} />
+            <Route path="/ProjectListApp" component={ProjectListApp} />
         </Switch>
     )
 }

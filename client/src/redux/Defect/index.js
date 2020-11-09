@@ -33,7 +33,7 @@ export const defectReducer = (state = initialState, action) => {
                 ...state,
                 defects: {
                     ...state.defects,
-                    [action.id]: {
+                    [action.payload.id]: {
                         title, summary, expect, actual, steps, status, assignee, priority, severity
                     }
                 }
