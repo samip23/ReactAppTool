@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const Header = () => {
   return (
     <div className="ui secondary pointing menu">
-      <Link to="/" className="item">
+      <Link to={process.env.NODE_ENV === "production" ? "/ReactAppTool/" : "/"} className="item">
         <h1>IQS Management Tool</h1>
       </Link>
       <div className="right menu">

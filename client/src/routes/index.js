@@ -15,23 +15,22 @@ import DefectListApp from "../Components/DefectApp/DefectListApp";
 import ProjectListApp from "../Components/ProjectApp/ProjectListApp";
 
 function Routes() {
-    console.log(process.env.NODE_ENV)
     return (
         <Switch>
             <Route path={process.env.NODE_ENV === "production" ? "/ReactAppTool" : '/'} exact component={Welcome} />
-            <Route path={process.env.NODE_ENV === "production" ? "/ReactAppTool" : '/TaskApp'} component={TaskApp} />   
-            <Route path={process.env.NODE_ENV === "production" ? "/ReactAppTool" : '/Welcome'} component={Welcome} />
-            <Route path={process.env.NODE_ENV === "production" ? "/ReactAppTool" : '/TaskListApp'} component={TaskListApp}  />
-            <Route path={process.env.NODE_ENV === "production" ? "/ReactAppTool" : '/DefectApp'} component={DefectApp} />
-            <Route path={process.env.NODE_ENV === "production" ? "/ReactAppTool" : '/DefectListApp'} component={DefectListApp} />
-            <Route path={process.env.NODE_ENV === "production" ? "/ReactAppTool" : '/GanttChart'} component={GanttChart} />
-            <Route path={process.env.NODE_ENV === "production" ? "/ReactAppTool" : '/Forum'} component={Forum} />
-            <Route path={process.env.NODE_ENV === "production" ? "/ReactAppTool" : '/GanttFormApp'} component={GanttFormApp} />
-            <Route path={process.env.NODE_ENV === "production" ? "/ReactAppTool" : '/VacationApp'} component={VacationApp} />
-            <Route path={process.env.NODE_ENV === "production" ? "/ReactAppTool" : '/VacationChartApp'} component={VacationChartApp} />
-            <Route path={process.env.NODE_ENV === "production" ? "/ReactAppTool" : '/TimesheetFormApp'} component={TimesheetFormApp} />
-            <Route path={process.env.NODE_ENV === "production" ? "/ReactAppTool" : '/ProjectFormApp'} component={ProjectFormApp} />
-            <Route path={process.env.NODE_ENV === "production" ? "/ReactAppTool" : '/ProjectListApp'} component={ProjectListApp} />
+            <Route path={process.env.NODE_ENV === "production" ? "/ReactAppTool/TaskApp" : '/TaskApp'} component={TaskApp} />   
+            <Route path={process.env.NODE_ENV === "production" ? "/ReactAppTool/Welcome" : '/Welcome'} component={Welcome} />
+            <Route path={process.env.NODE_ENV === "production" ? "/ReactAppTool/TaskListApp" : '/TaskListApp'} component={TaskListApp}  />
+            <Route path={process.env.NODE_ENV === "production" ? "/ReactAppTool/DefectApp" : '/DefectApp'} component={DefectApp} />
+            <Route path={process.env.NODE_ENV === "production" ? "/ReactAppTool/DefectListApp" : '/DefectListApp'} component={DefectListApp} />
+            <Route path={process.env.NODE_ENV === "production" ? "/ReactAppTool/GanttChart" : '/GanttChart'} component={GanttChart} />
+            <Route path={process.env.NODE_ENV === "production" ? "/ReactAppTool/Forum" : '/Forum'} component={Forum} />
+            <Route path={process.env.NODE_ENV === "production" ? "/ReactAppTool/GanttFormApp" : '/GanttFormApp'} component={GanttFormApp} />
+            <Route path={process.env.NODE_ENV === "production" ? "/ReactAppTool/VacationApp" : '/VacationApp'} component={VacationApp} />
+            <Route path={process.env.NODE_ENV === "production" ? "/ReactAppTool/VacationChartApp" : '/VacationChartApp'} component={VacationChartApp} />
+            <Route path={process.env.NODE_ENV === "production" ? "/ReactAppTool/TimesheetFormApp" : '/TimesheetFormApp'} component={TimesheetFormApp} />
+            <Route path={process.env.NODE_ENV === "production" ? "/ReactAppTool/ProjectFormApp" : '/ProjectFormApp'} component={ProjectFormApp} />
+            <Route path={process.env.NODE_ENV === "production" ? "/ReactAppTool/ProjectListApp" : '/ProjectListApp'} component={ProjectListApp} />
         </Switch>
     )
 }
