@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { useSelector } from "react-redux";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
+import ProjectItem from './ProjectItem';
+import ProjectDetail from './ProjectDetail.js';
+import { Bar } from 'react-chartjs-2';
 
 const ProjectList = () => {
 
@@ -38,50 +41,53 @@ const ProjectList = () => {
 
     const projects_ = useSelector((state) => state.project.project);
     const project_data = Object.values(projects_).slice(1);
-    console.log("project_data",project_data)
 
     const [activeIndex, setActiveIndex] = useState(null);
+
+    const projectNames = project_data.map((project) => project.projectName);
+    const projectProgresses = project_data.map((project) => project.progressV);
+
+    console.log(projectNames)
+    console.log(projectProgresses)
+
+    const state = {
+        labels: projectNames,
+        datasets: [
+            {
+                label: "Progress",
+                backgroundColor: 'rgba(75,192,192,1)',
+                borderColor: 'rgba(0,0,0,1)',
+                borderWidth: 2,
+                data: projectProgresses,
+            }
+        ],
+    };
 
     const onTitleClick = (index) => {
         const newIndex = activeIndex === index ? -1 : index
         setActiveIndex(newIndex);
     };
 
+    const [selectedProject, setSelectedProject] = useState(null);
+
+    const onProjectSelect = (key) => {
+        setSelectedProject(key);
+    };
+
     if (projects_ != null && Object.keys(projects_).length > 1) {
 
-        const renderedItems = project_data.map((project, index) => {
-            if (project.projectName != "") {
-                const active = index === activeIndex ? 'active' : '';
+        const keys = Object.keys(projects_);
+
+        const renderedItems = keys.map((key) => {
+            if (key !== "id") {
+                //const active = index === activeIndex ? 'active' : '';
 
                 return (
-                    <div class="ui card">
-                        <div class="content">
-                            <div class="header">{project.projectName}</div>
-                        </div>
-                        <div class="content">
-                            <h4 class="ui sub header">Summary</h4>
-                            <div class="ui small feed">
-                                <div class="event">
-                                    <div class="content">
-                                        <div class="summary">
-                                            <p>
-                                                <label>Assignee(s): </label>{project.projectAssignee}
-                                            </p>
-                                            <p>
-                                                <label>Project Milestones: </label>{project.projectMilestones}
-                                            </p>
-                                            <p>
-                                                <label>Project Start Date: </label>{project.start}
-                                            </p>
-                                            <p>
-                                                <label>Project End Date: </label>{project.end}
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <ProjectItem
+                        idx={key}
+                        onProjectSelect={() => onProjectSelect(key)}
+                        project={projects_[key]}
+                    />
                 );
             }
         });
@@ -114,14 +120,37 @@ const ProjectList = () => {
         return (
             <div>
                 <h3>List of Projects</h3>
-                
-                    {renderedItems}
-             
+
+                {renderedItems}
+
+                <br />
+                <ProjectDetail idx={selectedProject}/>
                 <br />
                 <div>
                     <button class="ui button" onClick={exportPDF}>
                         Generate Report
                 </button>
+                </div>
+                <br />
+                <div>
+                    <Bar
+                        data={state}
+                        options={
+                            {
+                                title: {
+                                    display: true,
+                                    text: 'Projects Summary',
+                                    fontSize: 20,
+                                },
+                                scales: {
+                                    yAxes: [{
+                                        ticks: {
+                                            beginAtZero: true,
+                                        }
+                                    }]
+                                }
+                            }}
+                    />
                 </div>
             </div>
         )

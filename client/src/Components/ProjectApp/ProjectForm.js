@@ -12,6 +12,7 @@ const ProjectForm = () => {
         projectMilestones: "",
         startDate_: new Date(),
         endDate_: new Date(),
+        progressV: 0,
         id: "",
     });
 

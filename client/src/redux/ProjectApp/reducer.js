@@ -1,5 +1,6 @@
 import { ADD_PROJECT } from "./action.js";
 import { SELECT_PROJECT_DATE } from "./action.js";
+import { SET_PROGRESS } from "./action.js";
 
 const initialState = {
     project: {
@@ -8,7 +9,8 @@ const initialState = {
       projectAssignee: "",
       projectMilestones: "",
       start: new Date(),
-      end: new Date()
+      end: new Date(),
+      progressV: 0,
     },
   },
 
@@ -29,7 +31,8 @@ export const projectReducer = (state = initialState, action) => {
             projectAssignee: action.payload.projectAssignee,
             projectMilestones: action.payload.projectMilestones,
             start: action.payload.startDate,
-            end: action.payload.endDate
+            end: action.payload.endDate,
+            progressV: 0,
            } 
           }
         }
@@ -52,6 +55,18 @@ export const projectReducer = (state = initialState, action) => {
            }
          };
         }
+
+        case SET_PROGRESS:
+      return {
+        ...state,
+        project: {
+          ...state.project,
+          [action.payload.id]: {
+            ...state.project[action.payload.id],
+            progressV: action.payload.progressV,
+          }
+        }
+      }
 
     default:
       return state;

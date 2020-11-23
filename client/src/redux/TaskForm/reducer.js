@@ -1,4 +1,5 @@
 import { ADD_TASK } from "./action.js";
+import { DELETE_TASK } from "./action"
 import { SET_PROGRESS } from "./action.js";
 
 const initialState = {
@@ -29,6 +30,11 @@ export const taskReducer = (state = initialState, action) => {
           }
         }
       }
+
+    case DELETE_TASK:
+      const newTask = {...state};
+      delete newTask.task[action.payload.id];
+      return newTask;
 
     case SET_PROGRESS:
       return {

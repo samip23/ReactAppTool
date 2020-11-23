@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import DefectDetail from "./DefectDetail";
 import DefectItem from "./DefectItem";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 import { Bar } from 'react-chartjs-2';
+import {deleteDefect} from "../../redux/Defect";
+import "./DefectList.scss";
 
 const DefectList = () => {
 
@@ -46,8 +48,8 @@ const DefectList = () => {
     const defects_ = useSelector((state) => state.defect.defects);
     const defect_data = Object.values(defects_).slice(1);
     const [selectedDefect, setSelectedDefect] = useState(null);
-
     const [activeIndex, setActiveIndex] = useState(null);
+    const [localDefect, setLocalDefect] = useState({...defects_});
 
     const countBlockers = defect_data.filter(defect => defect.severity === "Blocker");
     const blockerCounted = countBlockers.length;
@@ -57,6 +59,8 @@ const DefectList = () => {
     const mediumCounted = countMediums.length;
     const countLows = defect_data.filter(defect => defect.severity === "Low");
     const lowCounted = countLows.length;
+
+    const dispatch = useDispatch();
 
     const state = {
         labels: ["Defects"],
@@ -101,10 +105,12 @@ const DefectList = () => {
         setSelectedDefect(key);
     };
 
+    const handleDeleteDefect = (e) => {
+        dispatch(deleteDefect(e.target.id));
+        setLocalDefect({}) // to re-render
+    }
+
     if (defects_ != null && Object.keys(defects_).length > 1) {
-
-        //const keys = Object.keys(defects_);
-
         const renderedItems = defect_data.map((defect, index) => {
             if (defect.title != "") {
                 const active = index === activeIndex ? 'active' : '';
@@ -112,9 +118,18 @@ const DefectList = () => {
                 return (
                     <div key={defect.title}>
                         <div className={`title ${active}`} onClick={() => onTitleClick(index)}>
+                            <div id={defect.id} className="trash-icon" onClick={(e) => {e.stopPropagation(); return handleDeleteDefect(e)}}>
+                               <i id={defect.id} class="trash icon" onClick={handleDeleteDefect}></i>
+                            </div>
+
+                            <div className="task-name">
+
                             <i className="dropdown icon"></i>
 
                             {defect.title}
+                            </div>
+
+
                         </div>
                         <div className={`content ${active}`}>
                             <p>

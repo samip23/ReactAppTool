@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import TaskDetail from "./TaskDetail";
 import TaskItem from './TaskItem';
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch} from "react-redux";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
+import {deleteTask} from "../../redux/TaskForm/action"
+import "./TaskList.scss";
 
 const TaskList = () => {
 
@@ -36,14 +38,22 @@ const TaskList = () => {
       };
 
 
+    const dispatch = useDispatch();
     const tasks_ = useSelector((state) => state.taskform.task);
     let task_data = Object.values(tasks_);
     task_data = task_data.slice(1);
     const [selectedTask, setSelectedTask] = useState(null);
+    const [localTask, setLocalTask] = useState({});
 
     const onTaskSelect = (key) => {
         setSelectedTask(key);
     };
+
+    const handleDeleteTask = (e) => {
+        console.log(e.target.id)
+        dispatch(deleteTask(e.target.id));
+        setLocalTask({}); 
+    }
 
     if (tasks_ != null && Object.keys(tasks_).length > 1) {
         
@@ -52,7 +62,10 @@ const TaskList = () => {
         const renderedList = keys.map((key) => {
             if (key !== "id") {
                 return (
-                    <div class="item">
+                    <div class="list-items">
+                        <div id={key} className="trash-icon" onClick={handleDeleteTask}>
+                            <i id={key} class="trash icon" onClick={handleDeleteTask}></i>
+                        </div>
                         <TaskItem
                             idx ={key}
                             onTaskSelect={() => onTaskSelect(key)}
