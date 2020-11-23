@@ -17,8 +17,8 @@ import ProjectListApp from "../Components/ProjectApp/ProjectListApp";
 function Routes() {
     return (
         <Switch>
-            <Route exact path='/' component={Welcome} />
-            <Route path='/Welcome'  exact component={Welcome} />
+            <Route path='/' exact component={Welcome} />
+            <Route path='/Welcome' component={Welcome} />
             <Route path='/TaskApp' component={TaskApp} />   
             <Route path="/TaskListApp" component={TaskListApp}  />
             <Route path="/DefectApp" component={DefectApp} />
