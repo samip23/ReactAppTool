@@ -15,6 +15,7 @@ import DefectListApp from "../Components/DefectApp/DefectListApp";
 import ProjectListApp from "../Components/ProjectApp/ProjectListApp";
 
 function Routes() {
+    console.log("enviornment", process.env.NODE_ENV)
     return (
         <Switch>
             <Route path={process.env.NODE_ENV === "production" ? "/ReactAppTool" : '/'} exact component={Welcome} />
