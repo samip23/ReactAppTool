@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "8adb2b852280171f6eabce5fd64a843a",
+    "revision": "9b7860041b9a3ebe3326d8aebccf8fd5",
     "url": "/ReactAppTool/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/ReactAppTool/static/css/3.e6ac38db.chunk.css"
   },
   {
-    "revision": "b0ea9530aa0491801545",
+    "revision": "a059fe30855c8875c42c",
     "url": "/ReactAppTool/static/css/main.70113248.chunk.css"
   },
   {
@@ -44,8 +44,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/ReactAppTool/static/js/5.43eb3df9.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "b0ea9530aa0491801545",
-    "url": "/ReactAppTool/static/js/main.c647f075.chunk.js"
+    "revision": "a059fe30855c8875c42c",
+    "url": "/ReactAppTool/static/js/main.c01d2cb0.chunk.js"
   },
   {
     "revision": "1d69e5d32856d1d70c7a",
