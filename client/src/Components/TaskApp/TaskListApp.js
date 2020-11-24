@@ -17,13 +17,13 @@ class TaskListApp extends React.Component {
           <Link to={routeHelper("TaskApp")} class="item active">
             Project Management
                 </Link>
-          <Link to={routeHelper("/DefectApp")} class="item">
+          <Link to={routeHelper("DefectApp")} class="item">
             Defect Management
                 </Link>
-                <Link to={routeHelper("/Forum")} class="item">
+                <Link to={routeHelper("Forum")} class="item">
             Forum
                 </Link>
-                <Link to={routeHelper("/VacationApp")} class="item">
+                <Link to={routeHelper("VacationApp")} class="item">
                         HR
                 </Link>
                     <div class="right menu">
@@ -41,22 +41,22 @@ class TaskListApp extends React.Component {
                 <div class="ui grid">
                     <div class="four wide column">
                         <div class="ui vertical fluid tabular menu">
-                            <NavLink to={routeHelper("/TaskApp")} class="item">
+                            <NavLink to={routeHelper("TaskApp")} class="item">
                                 Add Task
                             </NavLink>
-                            <NavLink to={routeHelper("/TaskListApp")} class="item active">
+                            <NavLink to={routeHelper("TaskListApp")} class="item active">
                                 Task List
                             </NavLink>
-                            <NavLink to={routeHelper("/GanttChart")} class="item">
+                            <NavLink to={routeHelper("GanttChart")} class="item">
                                 Gantt Chart
                             </NavLink>
-                            <NavLink to={routeHelper("/GanttFormApp")} class="item">
+                            <NavLink to={routeHelper("GanttFormApp")} class="item">
                                 Gantt Form
                             </NavLink>
-                            <NavLink to={routeHelper("/ProjectFormApp")} class="item">
+                            <NavLink to={routeHelper("ProjectFormApp")} class="item">
                                 Project Form
                             </NavLink>
-                            <NavLink to={routeHelper("/ProjectListApp")} class="item">
+                            <NavLink to={routeHelper("ProjectListApp")} class="item">
                                 Project List
                             </NavLink>
                         </div>

@@ -24,13 +24,13 @@ class DefectApp extends React.Component {
           <Link to={routeHelper("TaskApp")} class="item">
             Project Management
                 </Link>
-          <Link to={routeHelper("/DefectApp")} class="active item">
+          <Link to={routeHelper("DefectApp")} class="active item">
             Defect Management
                 </Link>
-                <Link to={routeHelper("/Forum")} class="item">
+                <Link to={routeHelper("Forum")} class="item">
             Forum
                 </Link>
-                <Link to={routeHelper("/VacationApp")} class="item">
+                <Link to={routeHelper("VacationApp")} class="item">
                         HR
                 </Link>
                     <div class="right menu">
@@ -48,10 +48,10 @@ class DefectApp extends React.Component {
                 <div class="ui grid">
                     <div class="four wide column">
                         <div class="ui vertical fluid tabular menu">
-                            <Link to={routeHelper("/DefectApp")} class="item active">
+                            <Link to={routeHelper("DefectApp")} class="item active">
                                 Add Defect
                             </Link>
-                            <Link to={routeHelper("/DefectListApp")} class="item">
+                            <Link to={routeHelper("DefectListApp")} class="item">
                                 Defect List
                             </Link>
                         </div>

@@ -9,19 +9,19 @@ class GanttChart extends Component {
     return (
       <div>
         <div class="ui secondary  menu">
-        <Link to={routeHelper("/Welcome")} class="item">
+        <Link to={routeHelper("Welcome")} class="item">
                         Home
                 </Link>
-                    <Link to={routeHelper("/TaskApp")} class="item active">
+                    <Link to={routeHelper("TaskApp")} class="item active">
                         Project Management
                     </Link>
-                    <Link to={routeHelper("/DefectApp")} class="item">
+                    <Link to={routeHelper("DefectApp")} class="item">
                         Defect Management
                     </Link>
-                    <Link to={routeHelper("/Forum")} class="item">
+                    <Link to={routeHelper("Forum")} class="item">
                         Forum
                 </Link>
-                <Link to={routeHelper("/VacationApp")} class="item">
+                <Link to={routeHelper("VacationApp")} class="item">
                         HR
                 </Link>
           <div class="right menu">

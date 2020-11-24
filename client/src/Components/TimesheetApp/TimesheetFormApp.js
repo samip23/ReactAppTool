@@ -23,13 +23,13 @@ class TimesheetFormApp extends React.Component {
           <Link to={routeHelper("TaskApp")} class="item">
             Project Management
                 </Link>
-          <Link to={routeHelper("/DefectApp")} class="item">
+          <Link to={routeHelper("DefectApp")} class="item">
             Defect Management
                 </Link>
-                <Link to={routeHelper("/Forum")} class="item">
+                <Link to={routeHelper("Forum")} class="item">
             Forum
                 </Link>
-                <Link to={routeHelper("/VacationApp")} class="item active">
+                <Link to={routeHelper("VacationApp")} class="item active">
                         HR
                 </Link>
                     <div class="right menu">
@@ -47,13 +47,13 @@ class TimesheetFormApp extends React.Component {
                 <div class="ui grid">
                     <div class="four wide column">
                         <div class="ui vertical fluid tabular menu">
-                        <Link to={routeHelper("/VacationApp")} class="item">
+                        <Link to={routeHelper("VacationApp")} class="item">
                                 Add Vacation
                             </Link>
-                            <Link to={routeHelper("/VacationChartApp")} class="item">
+                            <Link to={routeHelper("VacationChartApp")} class="item">
                                 Vacation Chart
                                 </Link>
-                                <Link to={routeHelper("/TimesheetFormApp")} class="item active">
+                                <Link to={routeHelper("TimesheetFormApp")} class="item active">
                                 Timesheet
                                 </Link>
                         </div>

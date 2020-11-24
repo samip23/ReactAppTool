@@ -16,13 +16,13 @@ class Forum extends Component {
           <Link to={routeHelper("TaskApp")} class="item">
             Project Management
                 </Link>
-          <Link to={routeHelper("/DefectApp")} class="item">
+          <Link to={routeHelper("DefectApp")} class="item">
             Defect Management
                 </Link>
-                <Link to={routeHelper("/Forum")} class="item active">
+                <Link to={routeHelper("Forum")} class="item active">
             Forum
                 </Link>
-                <Link to={routeHelper("/VacationApp")} class="item">
+                <Link to={routeHelper("VacationApp")} class="item">
                         HR
                 </Link>
           <div class="right menu">

@@ -17,19 +17,19 @@ class VacationApp extends React.Component {
         return (
             <div>
                 <div class="ui secondary  menu">
-                    <Link to={routeHelper("/Welcome")} class="item">
+                    <Link to={routeHelper("Welcome")} class="item">
                         Home
                 </Link>
-                    <Link to={routeHelper("/TaskApp")} class="item">
+                    <Link to={routeHelper("TaskApp")} class="item">
                         Project Management
                     </Link>
-                    <Link to={routeHelper("/DefectApp")} class="item">
+                    <Link to={routeHelper("DefectApp")} class="item">
                         Defect Management
                     </Link>
-                    <Link to={routeHelper("/Forum")} class="item">
+                    <Link to={routeHelper("Forum")} class="item">
                         Forum
                 </Link>
-                <Link to={routeHelper("/VacationApp")} class="item active">
+                <Link to={routeHelper("VacationApp")} class="item active">
                         HR
                 </Link>
                     <div class="right menu">
@@ -47,13 +47,13 @@ class VacationApp extends React.Component {
                 <div class="ui grid">
                     <div class="four wide column">
                         <div class="ui vertical fluid tabular menu">
-                            <Link to={routeHelper("/VacationApp")} class="item active">
+                            <Link to={routeHelper("VacationApp")} class="item active">
                                 Add Vacation
                             </Link>
-                            <Link to={routeHelper("/VacationChartApp")} class="item">
+                            <Link to={routeHelper("VacationChartApp")} class="item">
                                 Vacation Chart
                                 </Link>
-                                <Link to={routeHelper("/TimesheetFormApp")} class="item">
+                                <Link to={routeHelper("TimesheetFormApp")} class="item">
                                 Timesheet
                                 </Link>
                         </div>

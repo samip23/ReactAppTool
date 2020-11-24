@@ -14,13 +14,13 @@ const DefectListApp = () => {
           <Link to={routeHelper("TaskApp")} class="item">
             Project Management
                 </Link>
-          <Link to={routeHelper("/DefectApp")} class="item active">
+          <Link to={routeHelper("DefectApp")} class="item active">
             Defect Management
                 </Link>
-                <Link to={routeHelper("/Forum")} class="item">
+                <Link to={routeHelper("Forum")} class="item">
             Forum
                 </Link>
-                <Link to={routeHelper("/VacationApp")} class="item">
+                <Link to={routeHelper("VacationApp")} class="item">
                         HR
                 </Link>
                     <div class="right menu">
@@ -38,10 +38,10 @@ const DefectListApp = () => {
                 <div class="ui grid">
                     <div class="four wide column">
                         <div class="ui vertical fluid tabular menu">
-                            <Link to={routeHelper("/DefectApp")} class="item">
+                            <Link to={routeHelper("DefectApp")} class="item">
                                 Add Defect
                             </Link>
-                            <Link to={routeHelper("/DefectListApp")} class="item active">
+                            <Link to={routeHelper("DefectListApp")} class="item active">
                                 Defect List
                             </Link>
                         </div>
