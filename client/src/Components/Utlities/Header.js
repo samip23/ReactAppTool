@@ -5,11 +5,11 @@ import {routeHelper} from "../../utils/routeHelper"
 const Header = () => {
   return (
     <div className="ui secondary pointing menu">
-      <Link to={routeHelper("/")} className="item">
+      <Link to={routeHelper("")} className="item">
         <h1>IQS Management Tool</h1>
       </Link>
       <div className="right menu">
-        <Link to={routeHelper("/")} className="item">
+        <Link to={routeHelper("")} className="item">
           Help
         </Link>
       </div>
