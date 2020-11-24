@@ -124,10 +124,10 @@ class Projects extends Component {
     <nav>
         <ul>
             <li>
-                <NavLink to="/Tasks">Tasks</NavLink>
+                <NavLink to={routeHelper("Tasks")}>Tasks</NavLink>
             </li>
             <li>
-                <NavLink to="/Welcome">Home</NavLink>
+                <NavLink to={routeHelper("Welcome")}>Home</NavLink>
             </li>
         </ul>
     </nav>

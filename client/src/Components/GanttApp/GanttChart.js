@@ -39,22 +39,22 @@ class GanttChart extends Component {
         <div class="ui grid">
           <div class="four wide column">
             <div class="ui vertical fluid tabular menu">
-              <NavLink to="/TaskApp" class="item">
-                Add Task
+                            <NavLink to={routeHelper("TaskApp")} class="item">
+                                Add Task
                             </NavLink>
-              <NavLink to="/TaskListApp" class="item">
-                Task List
+                            <NavLink to={routeHelper("TaskListApp")} class="item">
+                                Task List
                             </NavLink>
-              <NavLink to="/GanttChart" class="item active">
-                Gantt Chart
+                            <NavLink to={routeHelper("GanttChart")} class="item active">
+                                Gantt Chart
                             </NavLink>
-                            <NavLink to="/GanttFormApp" class="item">
-                Gantt Form
+                            <NavLink to={routeHelper("GanttFormApp")} class="item">
+                                Gantt Form
                             </NavLink>
-                            <NavLink to="/ProjectFormApp" class="item">
+                            <NavLink to={routeHelper("ProjectFormApp")} class="item">
                                 Project Form
                             </NavLink>
-                            <NavLink to="/ProjectListApp" class="item">
+                            <NavLink to={routeHelper("ProjectListApp")} class="item">
                                 Project List
                             </NavLink>
             </div>
