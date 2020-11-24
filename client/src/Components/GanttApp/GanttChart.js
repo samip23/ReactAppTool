@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link, NavLink } from "react-router-dom";
 import GanttApp from './GanttApp';
+import {routeHelper} from '../../utils/routeHelper';
 
 class GanttChart extends Component {
 
@@ -8,19 +9,19 @@ class GanttChart extends Component {
     return (
       <div>
         <div class="ui secondary  menu">
-          <Link to="/Welcome" class="item">
-            Home
+        <Link to={routeHelper("/Welcome")} class="item">
+                        Home
                 </Link>
-          <Link to="/TaskApp" class="active item">
-            Project Management
+                    <Link to={routeHelper("/TaskApp")} class="item active">
+                        Project Management
                     </Link>
-          <Link to="/DefectApp" class="item">
-            Defect Management
+                    <Link to={routeHelper("/DefectApp")} class="item">
+                        Defect Management
                     </Link>
-          <Link to="/Forum" class="item">
-            Forum
+                    <Link to={routeHelper("/Forum")} class="item">
+                        Forum
                 </Link>
-                <Link to="/VacationApp" class="item">
+                <Link to={routeHelper("/VacationApp")} class="item">
                         HR
                 </Link>
           <div class="right menu">

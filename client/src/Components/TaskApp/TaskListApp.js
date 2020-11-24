@@ -1,6 +1,7 @@
 import React from 'react';
 import TaskList from './TaskList';
 import { NavLink, Link } from 'react-router-dom';
+import {routeHelper} from '../../utils/routeHelper';
 
 class TaskListApp extends React.Component {
 
@@ -10,19 +11,19 @@ class TaskListApp extends React.Component {
         return (
             <div>
                 <div class="ui secondary  menu">
-                    <Link to="/Welcome" class="item">
-                        Home
+          <Link to={routeHelper("Welcome")}class="item">
+            Home
                 </Link>
-                    <Link to="/TaskApp" class="active item">
-                        Project Management
-                    </Link>
-                    <Link to="/DefectApp" class="item">
-                        Defect Management
-                    </Link>
-                    <Link to="/Forum" class="item">
-                        Forum
+          <Link to={routeHelper("TaskApp")} class="item active">
+            Project Management
                 </Link>
-                <Link to="/VacationApp" class="item">
+          <Link to={routeHelper("/DefectApp")} class="item">
+            Defect Management
+                </Link>
+                <Link to={routeHelper("/Forum")} class="item">
+            Forum
+                </Link>
+                <Link to={routeHelper("/VacationApp")} class="item">
                         HR
                 </Link>
                     <div class="right menu">
@@ -40,22 +41,22 @@ class TaskListApp extends React.Component {
                 <div class="ui grid">
                     <div class="four wide column">
                         <div class="ui vertical fluid tabular menu">
-                            <NavLink to="/TaskApp" class="item">
+                            <NavLink to={routeHelper("/TaskApp")} class="item">
                                 Add Task
                             </NavLink>
-                            <NavLink to="/TaskListApp" class="item active">
+                            <NavLink to={routeHelper("/TaskListApp")} class="item active">
                                 Task List
                             </NavLink>
-                            <NavLink to="/GanttChart" class="item">
+                            <NavLink to={routeHelper("/GanttChart")} class="item">
                                 Gantt Chart
                             </NavLink>
-                            <NavLink to="/GanttFormApp" class="item">
+                            <NavLink to={routeHelper("/GanttFormApp")} class="item">
                                 Gantt Form
                             </NavLink>
-                            <NavLink to="/ProjectFormApp" class="item">
+                            <NavLink to={routeHelper("/ProjectFormApp")} class="item">
                                 Project Form
                             </NavLink>
-                            <NavLink to="/ProjectListApp" class="item">
+                            <NavLink to={routeHelper("/ProjectListApp")} class="item">
                                 Project List
                             </NavLink>
                         </div>

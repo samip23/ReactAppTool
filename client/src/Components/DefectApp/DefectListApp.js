@@ -1,25 +1,26 @@
 import React from 'react';
 import {NavLink, Link} from "react-router-dom";
 import DefectList from "./DefectList"
+import {routeHelper} from "../../utils/routeHelper"
 
 const DefectListApp = () => {
     return  (
         <div className="DefectListApp">
 
                 <div class="ui secondary  menu">
-                    <Link to="/Welcome" class="item">
-                        Home
+          <Link to={routeHelper("Welcome")}class="item">
+            Home
                 </Link>
-                    <Link to="/TaskApp" class="item">
-                        Project Management
-                    </Link>
-                    <Link to="/DefectApp" class="active item">
-                        Defect Management
-                    </Link>
-                    <Link to="/Forum" class="item">
-                        Forum
+          <Link to={routeHelper("TaskApp")} class="item">
+            Project Management
                 </Link>
-                <Link to="/VacationApp" class="item">
+          <Link to={routeHelper("/DefectApp")} class="item active">
+            Defect Management
+                </Link>
+                <Link to={routeHelper("/Forum")} class="item">
+            Forum
+                </Link>
+                <Link to={routeHelper("/VacationApp")} class="item">
                         HR
                 </Link>
                     <div class="right menu">
@@ -37,10 +38,10 @@ const DefectListApp = () => {
                 <div class="ui grid">
                     <div class="four wide column">
                         <div class="ui vertical fluid tabular menu">
-                            <Link to="/DefectApp" class="item">
+                            <Link to={routeHelper("/DefectApp")} class="item">
                                 Add Defect
                             </Link>
-                            <Link to="/DefectListApp" class="item active">
+                            <Link to={routeHelper("/DefectListApp")} class="item active">
                                 Defect List
                             </Link>
                         </div>

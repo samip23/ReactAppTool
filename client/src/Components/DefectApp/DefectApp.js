@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import "./DefectApp.css";
 import DefectForm from "./DefectForm";
+import {routeHelper} from "../../utils/routeHelper";
 
 class DefectApp extends React.Component {
 
@@ -17,19 +18,19 @@ class DefectApp extends React.Component {
         return (
             <div>
                 <div class="ui secondary  menu">
-                    <Link to="/Welcome" class="item">
-                        Home
+          <Link to={routeHelper("Welcome")}class="item">
+            Home
                 </Link>
-                    <Link to="/TaskApp" class="item">
-                        Project Management
-                    </Link>
-                    <Link to="/DefectApp" class="active item">
-                        Defect Management
-                    </Link>
-                    <Link to="/Forum" class="item">
-                        Forum
+          <Link to={routeHelper("TaskApp")} class="item">
+            Project Management
                 </Link>
-                <Link to="/VacationApp" class="item">
+          <Link to={routeHelper("/DefectApp")} class="active item">
+            Defect Management
+                </Link>
+                <Link to={routeHelper("/Forum")} class="item">
+            Forum
+                </Link>
+                <Link to={routeHelper("/VacationApp")} class="item">
                         HR
                 </Link>
                     <div class="right menu">
@@ -47,10 +48,10 @@ class DefectApp extends React.Component {
                 <div class="ui grid">
                     <div class="four wide column">
                         <div class="ui vertical fluid tabular menu">
-                            <Link to="/DefectApp" class="item active">
+                            <Link to={routeHelper("/DefectApp")} class="item active">
                                 Add Defect
                             </Link>
-                            <Link to="/DefectListApp" class="item">
+                            <Link to={routeHelper("/DefectListApp")} class="item">
                                 Defect List
                             </Link>
                         </div>

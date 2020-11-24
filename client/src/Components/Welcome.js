@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
+import {routeHelper} from "../utils/routeHelper";
 
 class Welcome extends Component {
 
@@ -9,19 +10,19 @@ class Welcome extends Component {
     return (
       <div>
         <div class="ui secondary  menu">
-          <Link to="/Welcome" class="active item">
+          <Link to={routeHelper("Welcome")}class="active item">
             Home
                 </Link>
-          <Link to="/TaskApp" class="item">
+          <Link to={routeHelper("TaskApp")} class="item">
             Project Management
                 </Link>
-          <Link to="/DefectApp" class="item">
+          <Link to={routeHelper("/DefectApp")} class="item">
             Defect Management
                 </Link>
-                <Link to="/Forum" class="item">
+                <Link to={routeHelper("/Forum")} class="item">
             Forum
                 </Link>
-                <Link to="/VacationApp" class="item">
+                <Link to={routeHelper("/VacationApp")} class="item">
                         HR
                 </Link>
           <div class="right menu">
