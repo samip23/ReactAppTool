@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { LinearProgress } from '@material-ui/core';
 import { useSelector, useDispatch } from "react-redux"
 import { setProgress } from "../../redux/ProjectApp/action.js"
+import { Link } from 'react-router-dom';
+import ScenariosForm from '../ScenariosForm.js';
+import {scenarioEnabled} from "../../redux/ScenarioEnabler";
 
 const ProjectDetail = ({ idx }) => {
 
@@ -33,15 +36,29 @@ const ProjectDetail = ({ idx }) => {
         else alert("Invalid value was entered")
     }
 
+    const scenariosEnabled = useSelector(state => state.scenarioEnabler.scenarioEnabled)
+    
+    function handleTestScenarioClick() {
+        dispatch(scenarioEnabled(true));
+    }
+
     function calculateDaysRemain() {
         const diff = Date.parse(project.end) - todayDate.getTime()
-        if (diff > 0) return Math.abs(Math.round(diff/1000/60/60/24)).toString() + " Day(s) Remaining"
-        return Math.abs(Math.round(diff/1000/60/60/24)).toString() + " Day(s) overdue"
+        if (diff > 0) return Math.abs(Math.round(diff / 1000 / 60 / 60 / 24)).toString() + " Day(s) Remaining"
+        return Math.abs(Math.round(diff / 1000 / 60 / 60 / 24)).toString() + " Day(s) overdue"
     }
 
 
     if (!project) {
         return <div>Loading...</div>;
+    }
+
+    if (scenariosEnabled) {
+        return (
+            <div>
+                <ScenariosForm projectName={project.projectName} />
+            </div>
+        )
     }
 
     return (
@@ -57,6 +74,7 @@ const ProjectDetail = ({ idx }) => {
                             <th>Project's Progress</th>
                             <th>Project's Timeline</th>
                             <th>Days Remaining</th>
+                            <th>Test Scenarios</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -72,8 +90,13 @@ const ProjectDetail = ({ idx }) => {
                                 <LinearProgress variant="determinate" value={progressV_by_idx} />
                                 <label>Current Progress: {progressV_by_idx}%</label>
                             </td>
-                            <td style={{ width: "120%" }} data-label="Project Timeline">{project.start.substring(0, 10)} - {project.end.substring(0,10)}</td>
+                            <td style={{ width: "120%" }} data-label="Project Timeline">{project.start.substring(0, 10)} - {project.end.substring(0, 10)}</td>
                             <td data-label="Days to Deadline">{calculateDaysRemain()}</td>
+                            <td data-label="Test Scenarios">
+                                <button type="submit" onClick={handleTestScenarioClick}>Test Scenarios
+                                    {/*<Link to={{pathname: '/ScenariosFormApp', projectProps: { name: project.projectName } }}>Test Scenarios</Link>*/}
+                                </button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>

@@ -13,11 +13,13 @@ import TimesheetFormApp from "../Components/TimesheetApp/TimesheetFormApp";
 import ProjectFormApp from "../Components/ProjectApp/ProjectFormApp";
 import DefectListApp from "../Components/DefectApp/DefectListApp";
 import ProjectListApp from "../Components/ProjectApp/ProjectListApp";
+import ScenariosFormApp from "../Components/ScenariosFormApp";
+import { Login } from '../Components/Login';
 
 function Routes() {
     return (
         <Switch>
-            <Route path={process.env.NODE_ENV === "production" ? "/ReactAppTool" : '/'} exact component={Welcome} />
+            <Route path={process.env.NODE_ENV === "production" ? "/ReactAppTool" : '/'} exact component={Login} />
             <Route path={process.env.NODE_ENV === "production" ? "/ReactAppTool/TaskApp" : '/TaskApp'} component={TaskApp} />   
             <Route path={process.env.NODE_ENV === "production" ? "/ReactAppTool/Welcome" : '/Welcome'} component={Welcome} />
             <Route path={process.env.NODE_ENV === "production" ? "/ReactAppTool/TaskListApp" : '/TaskListApp'} component={TaskListApp}  />
@@ -31,6 +33,7 @@ function Routes() {
             <Route path={process.env.NODE_ENV === "production" ? "/ReactAppTool/TimesheetFormApp" : '/TimesheetFormApp'} component={TimesheetFormApp} />
             <Route path={process.env.NODE_ENV === "production" ? "/ReactAppTool/ProjectFormApp" : '/ProjectFormApp'} component={ProjectFormApp} />
             <Route path={process.env.NODE_ENV === "production" ? "/ReactAppTool/ProjectListApp" : '/ProjectListApp'} component={ProjectListApp} />
+            <Route path={process.env.NODE_ENV === "production" ? "/ReactAppTool/ScenariosFormApp" : '/ScenariosFormApp'} component={ScenariosFormApp} />
         </Switch>
     )
 }

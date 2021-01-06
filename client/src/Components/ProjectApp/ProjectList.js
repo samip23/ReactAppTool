@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { useSelector } from "react-redux";
+import { useSelector , useDispatch} from "react-redux";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 import ProjectItem from './ProjectItem';
 import ProjectDetail from './ProjectDetail.js';
 import { Bar } from 'react-chartjs-2';
+import {scenarioEnabled} from "../../redux/ScenarioEnabler"
 
 const ProjectList = () => {
 
@@ -39,6 +40,7 @@ const ProjectList = () => {
     };
 
 
+    const dispatch = useDispatch();
     const projects_ = useSelector((state) => state.project.project);
     const project_data = Object.values(projects_).slice(1);
 
@@ -46,9 +48,6 @@ const ProjectList = () => {
 
     const projectNames = project_data.map((project) => project.projectName);
     const projectProgresses = project_data.map((project) => project.progressV);
-
-    console.log(projectNames)
-    console.log(projectProgresses)
 
     const state = {
         labels: projectNames,
@@ -72,6 +71,7 @@ const ProjectList = () => {
 
     const onProjectSelect = (key) => {
         setSelectedProject(key);
+        dispatch(scenarioEnabled(false))
     };
 
     if (projects_ != null && Object.keys(projects_).length > 1) {
@@ -124,13 +124,13 @@ const ProjectList = () => {
                 {renderedItems}
 
                 <br />
-                <ProjectDetail idx={selectedProject}/>
-                <br />
                 <div>
                     <button class="ui button" onClick={exportPDF}>
-                        Generate Report
+                        Generate Project Report
                 </button>
                 </div>
+                <br />
+                <ProjectDetail idx={selectedProject} />
                 <br />
                 <div>
                     <Bar

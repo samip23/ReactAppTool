@@ -52,6 +52,7 @@ const TaskForm = () => {
       setNewTask({ ...newTask, date: date_, id});
       dispatch(addTask(taskName, taskAssignee, taskPriority, date_, id));
       document.getElementById("task-form").submit();
+      
     } else {
       alert("Make sure all fields have been entered");
     }

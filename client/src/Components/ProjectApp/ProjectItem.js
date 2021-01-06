@@ -20,10 +20,10 @@ const ProjectItem = ({ idx, project, onProjectSelect }) => {
                                         <label>Project Milestones: </label>{project.projectMilestones}
                                     </p>
                                     <p>
-                                        <label>Project Start Date: </label>{project.start}
+                                        <label>Project Start Date: </label>{project.start.split("T")[0]}
                                     </p>
                                     <p>
-                                        <label>Project End Date: </label>{project.end}
+                                        <label>Project End Date: </label>{project.end.split("T")[0]}
                                     </p>
                                 </div>
                             </div>
