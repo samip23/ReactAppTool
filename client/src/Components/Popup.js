@@ -4,7 +4,8 @@ import './Popup.scss';
 import { addScenario } from "../redux/Scenario/action.js";
 import uniqid from "uniqid";
 
-const Popup = ({projectName, closePopup}) => {
+const Popup = ({projectName, projectId, closePopup}) => {
+    console.log("POPUP", projectId)
 
     const [newScenario, setNewScenario] = useState({
         project: "",
@@ -12,7 +13,7 @@ const Popup = ({projectName, closePopup}) => {
         highLevelSteps: "",
         validation: "",
         language: "English",
-        id: "",
+        // key: "",
         result: "",
     });
 
@@ -22,7 +23,7 @@ const Popup = ({projectName, closePopup}) => {
 
     const [showPopup, setShowPopup] = useState(false);
 
-    const scenarios_ = useSelector((state) => state.scenario.scenario);
+    const scenarios_ = useSelector((state) => state.scenario);
 
     useEffect(() => {
         setScenarios(scenarios_);
@@ -37,9 +38,10 @@ const Popup = ({projectName, closePopup}) => {
         event.preventDefault();
         console.log("scenarios",newScenario)
         if (description !== "" && highLevelSteps !== "" && validation !== "") {
-            const id = uniqid();
-            setNewScenario({ ...newScenario, id });
-            dispatch(addScenario(projectName, description, highLevelSteps, validation, language, id));
+            const key = "key-" + uniqid();
+            console.log("genereated key", key)
+            setNewScenario({ ...newScenario, projectId });
+            dispatch(addScenario(projectName, description, highLevelSteps, validation, language, projectId, key));
             document.getElementById("scenarios-form").submit();
         } else {
             alert("Make sure all fields have been entered");
@@ -54,7 +56,7 @@ const Popup = ({projectName, closePopup}) => {
                 <form id="scenarios-form" className="ui form" /* onSubmit={onFormSubmit} */>
                     <div className="field">
                         <label>Description:</label>
-                        <textarea
+                        <textarea className="text-area-popup"
                             name="description"
                             type="text"
                             value={description}
@@ -64,6 +66,8 @@ const Popup = ({projectName, closePopup}) => {
                     <div className="field">
                         <label>High Level Steps:</label>
                         <textarea
+                        className="text-area-popup"
+
                             name="highLevelSteps"
                             type="text"
                             value={highLevelSteps}
@@ -73,6 +77,7 @@ const Popup = ({projectName, closePopup}) => {
                     <div className="field">
                         <label>Validation:</label>
                         <textarea
+className="text-area-popup"
                             name="validation"
                             type="text"
                             value={validation}

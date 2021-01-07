@@ -8,6 +8,7 @@ import {scenarioEnabled} from "../../redux/ScenarioEnabler";
 
 const ProjectDetail = ({ idx }) => {
 
+    console.log("project id", idx)
     const todayDate = new Date();
 
     const [progressV, setProgressV] = useState();
@@ -56,7 +57,7 @@ const ProjectDetail = ({ idx }) => {
     if (scenariosEnabled) {
         return (
             <div>
-                <ScenariosForm projectName={project.projectName} />
+                <ScenariosForm projectName={project.projectName} projectId = {idx}/>
             </div>
         )
     }

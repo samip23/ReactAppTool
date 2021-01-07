@@ -7,7 +7,8 @@ import jsPDF from "jspdf";
 import "jspdf-autotable";
 import ScenarioItem from './ScenarioItem.js';
 
-const ScenariosForm = ({ projectName }) => {
+const ScenariosForm = ({ projectName, projectId }) => {
+    console.log("projectId", projectId)
 
     const exportPDF = () => {
         const unit = "pt";
@@ -20,7 +21,7 @@ const ScenariosForm = ({ projectName }) => {
 
         const title = "Test Scenarios Report";
         const headers = [["Project", "Description", "High Level Steps", "Validation", "Language", "Test Result"]];
-        const data = scenario_data.map((elt) => [
+        const data = scenario_arr.map((elt) => [
             elt.project,
             elt.description,
             elt.highLevelSteps,
@@ -53,7 +54,7 @@ const ScenariosForm = ({ projectName }) => {
     const { project, description, highLevelSteps, validation, language } = newScenario;
     const dispatch = useDispatch();
     const [showPopup, setShowPopup] = useState(false);
-    const scenarios_ = useSelector((state) => state.scenario.scenario);
+    const scenarios_ = useSelector((state) => state.scenario);
 
     useEffect(() => {
         setScenarios(scenarios_);
@@ -79,33 +80,61 @@ const ScenariosForm = ({ projectName }) => {
         event.preventDefault();
 
         if (description !== "" && highLevelSteps !== "" && validation !== "") {
-            const id = uniqid();
-            setNewScenario({ ...newScenario, id });
-            dispatch(addScenario(project, description, highLevelSteps, validation, language, id));
-            //document.getElementById("scenarios-form").submit();
+            const key = uniqid();
+            setNewScenario({ ...newScenario, projectId });
+            dispatch(addScenario(project, description, highLevelSteps, validation, language, projectId, key));
+            document.getElementById("scenarios-form").submit();
         } else {
             alert("Make sure all fields have been entered");
         }
     };
-
+    
     const [localScenario, setLocalScenario] = useState({});
-    const scenario_data = Object.values(scenarios_).slice(1);
+
+    const projects_ = useSelector((state) => state.project.project);
+    const project_data = Object.values(projects_).slice(1);
+
+    const scenario_arr = Object.values(scenarios_).slice(1);
+    let scenarios__;
 
 
-    const projectScenarios = scenario_data.filter(scenario => scenario.project === projectName);
+    const projectKeys = Object.keys(projects_).slice(1);
+    const scenarioKeys = Object.keys(scenarios_).slice(1);
 
-    console.log(projectScenarios)
+    
+    const _scenarios_ = Object.keys(scenarios_).length < 2 ? {} : Object.values(scenarios_[projectId])
+    console.log("1111", _scenarios_)
+    console.log("2222", scenario_arr)
+
+    const scenario_values = Object.values(scenarios_).slice(1)
+
+    if (scenario_arr !== undefined) {
+
+    scenarios__ = projectKeys.map(project => scenarioKeys.filter
+        (scenario => scenario.project == project.projectName))
+    console.log("scenarios__", scenarios__);
+    // performance issue-> might have to store scenarios under each project down the road
+    //  scenarios__ = project_data.map(project => scenario_data.filter(scenario => scenario.project === project.projectName));
+    // console.log("scenarios__", scenarios__)
+    }
+
 
     const handleDeleteScenario = (e) => {
         dispatch(deleteScenario(e.target.id));
         setLocalScenario({});
     }
 
-    
-    if (projectScenarios != null && Object.keys(projectScenarios).length > 0) {
-        const keys = Object.keys(projectScenarios);
+    //projectScenarios = list of scenarios per selected project
+    //filter projectScenarios by result (p/f/b)
+    //list of "p" scenarios result [proejc].length
+    //count of "p -> number, [p, f]
 
-        const renderedItems = keys.map((key) => {
+    //const projectCount = [pcount, fCount]
+    
+    if (_scenarios_ != null && _scenarios_.length > 0) {
+        
+        const renderedItems = _scenarios_.map((key) => {
+            console.log("key rendered", key)
             if (key !== "id") {
                 return (
                     <div class="list-items">
@@ -113,9 +142,10 @@ const ScenariosForm = ({ projectName }) => {
                             <i id={key} class="trash icon" onClick={handleDeleteScenario}></i>
                         </div>
                         <ScenarioItem
-                            idx ={key}
+                            idx ={projectId}
                             onScenarioSelect={() => onScenarioSelect(key)}
-                            scenario={projectScenarios[key]}
+                            scenario={key}
+                            
                         />
                        
                     </div>
@@ -135,6 +165,7 @@ const ScenariosForm = ({ projectName }) => {
                     <Popup
                         projectName={projectName}
                         closePopup={togglePopup}
+                        projectId={projectId}
                     />
                     : null
                 }
@@ -155,6 +186,7 @@ const ScenariosForm = ({ projectName }) => {
             <Popup
                 projectName={projectName}
                 closePopup={togglePopup}
+                projectId={projectId}
             />
             : null
         }

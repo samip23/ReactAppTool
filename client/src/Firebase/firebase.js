@@ -1,5 +1,9 @@
 import firebase from 'firebase';
 
+// inside key.js
+// export const api_key = AI..a..
+// add key.js to .gitignore
+//apiKey: api_key
 const firebaseConfig = {
     apiKey: "AIzaSyAN9VigARouaAMuiSjzo4kvv7ylaMJ7yiM",
     authDomain: "iqstool.firebaseapp.com",
@@ -13,6 +17,17 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 const database = firebase.database();
+const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
+
+export { firebase, googleAuthProvider, database as default };
+
+
+
+
+
+
+
+/*
 
 database.ref().on('value', (snapshot) => {
     console.log(snapshot.val());
@@ -24,7 +39,7 @@ database.ref('expenses').push({
     amount: 10960,
     createdAt: 958493920
 })
-
+*/
 /*
 database.ref()
 .once('value')

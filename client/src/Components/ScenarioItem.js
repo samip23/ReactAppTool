@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { setResult } from "../redux/Scenario/action.js"
 
-const ScenarioItem = ({ idx, scenario, onScenarioSelect }) => {
+const ScenarioItem = ({ idx, scenario, onScenarioSelect, key }) => {
+
+    console.log("sceanriotem", scenario, idx)
     
     const result_by_idx = useSelector(state => {
-        if (state.scenario.scenario[idx] !== undefined) {
-            return state.scenario.scenario[idx].result;
+        if (state.scenario[idx] !== undefined) {
+            return state.scenario[idx].result;
         }
         return "";
     })
@@ -20,7 +22,7 @@ const ScenarioItem = ({ idx, scenario, onScenarioSelect }) => {
     
     function handleButtonClick() {
         if (result === "p" || result === "f" || result === "b") {
-            dispatch(setResult(idx, result));
+            dispatch(setResult(idx, result, projectId));
         }
         else alert ("Invalid value was entered")
     };

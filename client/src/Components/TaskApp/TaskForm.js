@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import DatePickerApp from "../Utlities/DatePickerApp";
 import { useSelector, useDispatch } from "react-redux";
-import { addTask } from "../../redux/TaskForm/action.js";
+import { startAddTask } from "../../redux/TaskForm/action.js";
 import uniqid from "uniqid";
 import "./TaskForm.scss";
 
@@ -50,7 +50,7 @@ const TaskForm = () => {
     if (taskName !== "" && taskAssignee !== "" && taskPriority !== "") {
       const id = uniqid();
       setNewTask({ ...newTask, date: date_, id});
-      dispatch(addTask(taskName, taskAssignee, taskPriority, date_, id));
+      dispatch(startAddTask({taskName, taskAssignee, taskPriority, date_, id}));
       document.getElementById("task-form").submit();
       
     } else {

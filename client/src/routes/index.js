@@ -14,7 +14,7 @@ import ProjectFormApp from "../Components/ProjectApp/ProjectFormApp";
 import DefectListApp from "../Components/DefectApp/DefectListApp";
 import ProjectListApp from "../Components/ProjectApp/ProjectListApp";
 import ScenariosFormApp from "../Components/ScenariosFormApp";
-import { Login } from '../Components/Login';
+import Login  from '../Components/Login';
 
 function Routes() {
     return (

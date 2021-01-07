@@ -4,7 +4,7 @@ import App from "./App";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor } from "./redux/store";
-import './Firebase/firebase';
+import { firebase } from './Firebase/firebase';
 
 ReactDOM.render(
   <Provider store={store}>
@@ -14,3 +14,11 @@ ReactDOM.render(
   </Provider>,
   document.getElementById("root")
 );
+
+firebase.auth().onAuthStateChanged((user) => {
+  if (user) {
+    console.log('log in');
+  } else {
+    console.log('log out');
+  }
+});

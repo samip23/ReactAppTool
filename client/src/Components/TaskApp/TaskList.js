@@ -55,7 +55,7 @@ const TaskList = () => {
         setLocalTask({}); 
     }
 
-    if (tasks_ != null && Object.keys(tasks_).length > 1) {
+    if (tasks_ != null && Object.keys(tasks_).length > 0) {
         
         const keys = Object.keys(tasks_);
 

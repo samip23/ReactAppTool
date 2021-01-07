@@ -8,7 +8,7 @@ import Welcome from "./Components/Welcome";
 function App() {
   return (
     <div className="ui container">
-      <HashRouter history={history}>
+      <HashRouter basename="/" history={history}>
         <div>
           <Header />
           <Routes />

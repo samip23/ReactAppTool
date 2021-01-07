@@ -42,14 +42,45 @@ const ProjectList = () => {
 
     const dispatch = useDispatch();
     const projects_ = useSelector((state) => state.project.project);
+    // console.log("projects_", projects_)
     const project_data = Object.values(projects_).slice(1);
 
-    const [activeIndex, setActiveIndex] = useState(null);
+    console.log("project_data", projects_)
+    const scenarios_ = useSelector(state => state.scenario);
+    const scenarios_data = Object.values(scenarios_).slice(1)[0];
+
+    console.log("scenarios_DATA", scenarios_)
 
     const projectNames = project_data.map((project) => project.projectName);
     const projectProgresses = project_data.map((project) => project.progressV);
 
-    const state = {
+    let scenario_state;
+
+    const projectKeys = Object.keys(projects_).slice(1);
+    const scenarioKeys = Object.keys(scenarios_).slice(1);
+        
+    if (scenarios_data !== undefined) {
+    const scenarios = projectKeys.map(project => scenarioKeys.filter(scenario => scenario.project == project.projectName))
+    console.log("scenarios", scenarios)
+     scenario_state = {
+        labels: projectNames,
+        datasets: [
+            {
+                label: "Progress",
+                backgroundColor: 'rgba(75,192,192,1)',
+                borderColor: 'rgba(0,0,0,1)',
+                borderWidth: 2,
+                data:   scenarios[0],
+                maxBarThickness: 50
+            }
+        ],
+    };
+    }
+
+    const [activeIndex, setActiveIndex] = useState(null);
+
+
+    const project_state = {
         labels: projectNames,
         datasets: [
             {
@@ -58,9 +89,11 @@ const ProjectList = () => {
                 borderColor: 'rgba(0,0,0,1)',
                 borderWidth: 2,
                 data: projectProgresses,
+                maxBarThickness: 50
             }
         ],
     };
+
 
     const onTitleClick = (index) => {
         const newIndex = activeIndex === index ? -1 : index
@@ -77,6 +110,7 @@ const ProjectList = () => {
     if (projects_ != null && Object.keys(projects_).length > 1) {
 
         const keys = Object.keys(projects_);
+        console.log("keys", keys)
 
         const renderedItems = keys.map((key) => {
             if (key !== "id") {
@@ -134,7 +168,7 @@ const ProjectList = () => {
                 <br />
                 <div>
                     <Bar
-                        data={state}
+                        data={project_state}
                         options={
                             {
                                 title: {
@@ -147,6 +181,33 @@ const ProjectList = () => {
                                         ticks: {
                                             beginAtZero: true,
                                         }
+                                    }]
+                                }
+                            }}
+                    />
+                </div>
+                <div>
+                    <Bar className="graph-scenarios"
+                        data={scenario_state}
+                        options={
+                            {
+                                title: {
+                                    display: true,
+                                    text: 'Projects Summary',
+                                    fontSize: 20,
+                                },
+                                scales: {
+                                    yAxes: [{
+                                        ticks: {
+                                            beginAtZero: true,
+                                        },
+                                        stacked: true
+                                    }],
+                                    xAxes: [{
+                                        ticks: {
+                                            beginAtZero: true,
+                                        },
+                                        stacked: true
                                     }]
                                 }
                             }}

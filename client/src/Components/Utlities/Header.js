@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import {routeHelper} from "../../utils/routeHelper"
+import { connect } from 'react-redux';
+import { startLogin, startLogout } from '../../redux/auth';
 
-const Header = () => {
+export const Header = ({ startLogout }) => {
   return (
     <div className="ui secondary pointing menu">
       <Link to={routeHelper("")} className="item">
@@ -12,9 +14,14 @@ const Header = () => {
         <Link to={routeHelper("")} className="item">
           Help
         </Link>
+        <button onClick={startLogin}>Logout</button>
       </div>
     </div>
   );
 };
 
-export default Header;
+const mapDispatchToProps = (dispatch) => ({
+  startLogout: () => dispatch(startLogout())
+})
+
+export default connect(undefined, mapDispatchToProps)(Header);

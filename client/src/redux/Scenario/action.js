@@ -2,7 +2,7 @@ export const ADD_SCENARIO = "ADD_SCENARIO";
 export const DELETE_SCENARIO = "DELETE_SCENARIO";
 export const SET_RESULT = "SET_RESULT";
 
-export const addScenario = (project, description, highLevelSteps, validation, language, id) => ({
+export const addScenario = (project, description, highLevelSteps, validation, language, id, key) => ({
   type: ADD_SCENARIO,
   payload: {
     project,
@@ -10,7 +10,8 @@ export const addScenario = (project, description, highLevelSteps, validation, la
     highLevelSteps,
     validation,
     language,
-    id
+    id,
+    key 
   },
 });
 
@@ -19,12 +20,13 @@ export const deleteScenario = (id) => ({
   payload: {id}
 });
 
-export const setResult = (id, result ) => (
+export const setResult = (id, result, key ) => (
   {
     type: SET_RESULT,
     payload: {
       id,
       result,
+      key
     }
   }
 )
