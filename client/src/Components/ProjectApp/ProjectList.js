@@ -236,7 +236,7 @@ const ProjectList = () => {
             options={{
               title: {
                 display: true,
-                text: "Projects Summary",
+                text: "Test Scenarios Summary",
                 fontSize: 20,
               },
               scales: {

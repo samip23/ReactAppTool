@@ -4,7 +4,7 @@ import firebase from 'firebase';
 // export const api_key = AI..a..
 // add key.js to .gitignore
 //apiKey: api_key
-const firebaseConfig = {
+export const firebaseConfig = {
     apiKey: "AIzaSyAN9VigARouaAMuiSjzo4kvv7ylaMJ7yiM",
     authDomain: "iqstool.firebaseapp.com",
     databaseURL: "https://iqstool-default-rtdb.firebaseio.com",

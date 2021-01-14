@@ -1,10 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import {routeHelper} from "../../utils/routeHelper"
 import { connect } from 'react-redux';
 import { startLogin, startLogout } from '../../redux/auth';
 
 export const Header = ({ startLogout }) => {
+  const history = useHistory();
+  const handleLogout = () => {
+    startLogout();
+    history.push("/")
+  }
   return (
     <div className="ui secondary pointing menu">
       <Link to={routeHelper("")} className="item">
@@ -14,7 +19,7 @@ export const Header = ({ startLogout }) => {
         <Link to={routeHelper("")} className="item">
           Help
         </Link>
-        <button onClick={startLogin}>Logout</button>
+        <button onClick={handleLogout}>Logout</button>
       </div>
     </div>
   );

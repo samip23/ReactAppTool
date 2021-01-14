@@ -1,5 +1,6 @@
-import { createBrowserHistory } from 'history';
+import { createBrowserHistory, createHashHistory } from 'history';
+import { useHistory } from 'react-router-dom';
 
-const history = createBrowserHistory();
+const history = createHashHistory({forceRefresh:true});
 
 export default history;
