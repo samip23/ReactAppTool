@@ -11,6 +11,7 @@ import Welcome from './Components/Welcome';
 function App() {
   const user = useUser();
   console.log("user", user);
+  
   return (
     <div className="ui container">
       <HashRouter basename="/" history={history}>
