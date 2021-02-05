@@ -9,18 +9,14 @@ import Welcome from './Components/Welcome';
 
 
 function App() {
-  const user = useUser();
-  console.log("user", user);
   
   return (
     <div className="ui container">
       <HashRouter basename="/" history={history}>
         <div>
-          <AuthCheck fallback={<><Header/><Login/></>}>
             <Header />
             <Redirect to="/Welcome" />
             <Routes />
-          </AuthCheck>
         </div>
       </HashRouter>
     </div>
