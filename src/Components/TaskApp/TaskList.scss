@@ -1,0 +1,18 @@
+.list-items {
+    display: flex;
+
+    .item {
+        margin-left: 15px;
+    }
+
+    .trash-icon {
+        height: 100%;
+    }
+
+    .trash-icon:hover {
+        cursor: pointer;
+        .trash.icon {
+            font-size: 1.1em;
+        }
+    }
+}
