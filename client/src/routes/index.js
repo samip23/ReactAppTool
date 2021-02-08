@@ -34,7 +34,6 @@ function Routes() {
             <Route path={process.env.NODE_ENV === "production" ? "/ReactAppTool/ProjectFormApp" : '/ProjectFormApp'} component={ProjectFormApp} />
             <Route path={process.env.NODE_ENV === "production" ? "/ReactAppTool/ProjectListApp" : '/ProjectListApp'} component={ProjectListApp} />
             <Route path={process.env.NODE_ENV === "production" ? "/ReactAppTool/ScenariosFormApp" : '/ScenariosFormApp'} component={ScenariosFormApp} /> */}
-            <Route path= {'/ScenariosFormApp'} exact component={Welcome} />
             <Route path= {'/TaskApp'} component={TaskApp} />   
             <Route path= {'/Welcome'} component={Welcome} />
             <Route path= {'/TaskListApp'} component={TaskListApp}  />
@@ -49,6 +48,7 @@ function Routes() {
             <Route path= {'/ProjectFormApp'} component={ProjectFormApp} />
             <Route path= {'/ProjectListApp'} component={ProjectListApp} />
             <Route path= {'/ScenariosFormApp'} component={ScenariosFormApp} />
+            <Route path= {'/'} exact component={Login} />
         </Switch>
     )
 }
