@@ -19,7 +19,7 @@ import Login  from '../Components/Login';
 function Routes() {
     return (
         <Switch>
-            <Route path={process.env.NODE_ENV === "production" ? "/ReactAppTool" : '/'} exact component={Login} />
+            {/* <Route path={process.env.NODE_ENV === "production" ? "/ReactAppTool" : '/'} exact component={Welcome} />
             <Route path={process.env.NODE_ENV === "production" ? "/ReactAppTool/TaskApp" : '/TaskApp'} component={TaskApp} />   
             <Route path={process.env.NODE_ENV === "production" ? "/ReactAppTool/Welcome" : '/Welcome'} component={Welcome} />
             <Route path={process.env.NODE_ENV === "production" ? "/ReactAppTool/TaskListApp" : '/TaskListApp'} component={TaskListApp}  />
@@ -33,7 +33,22 @@ function Routes() {
             <Route path={process.env.NODE_ENV === "production" ? "/ReactAppTool/TimesheetFormApp" : '/TimesheetFormApp'} component={TimesheetFormApp} />
             <Route path={process.env.NODE_ENV === "production" ? "/ReactAppTool/ProjectFormApp" : '/ProjectFormApp'} component={ProjectFormApp} />
             <Route path={process.env.NODE_ENV === "production" ? "/ReactAppTool/ProjectListApp" : '/ProjectListApp'} component={ProjectListApp} />
-            <Route path={process.env.NODE_ENV === "production" ? "/ReactAppTool/ScenariosFormApp" : '/ScenariosFormApp'} component={ScenariosFormApp} />
+            <Route path={process.env.NODE_ENV === "production" ? "/ReactAppTool/ScenariosFormApp" : '/ScenariosFormApp'} component={ScenariosFormApp} /> */}
+            <Route path= {'/ScenariosFormApp'} exact component={Welcome} />
+            <Route path= {'/TaskApp'} component={TaskApp} />   
+            <Route path= {'/Welcome'} component={Welcome} />
+            <Route path= {'/TaskListApp'} component={TaskListApp}  />
+            <Route path= {'/DefectApp'} component={DefectApp} />
+            <Route path= {'/DefectListApp'} component={DefectListApp} />
+            <Route path= {'/GanttChart'} component={GanttChart} />
+            <Route path= {'/Forum'} component={Forum} />
+            <Route path= {'/GanttFormApp'} component={GanttFormApp} />
+            <Route path= {'/VacationApp'} component={VacationApp} />
+            <Route path= {'/VacationChartApp'} component={VacationChartApp} />
+            <Route path= {'/TimesheetFormApp'} component={TimesheetFormApp} />
+            <Route path= {'/ProjectFormApp'} component={ProjectFormApp} />
+            <Route path= {'/ProjectListApp'} component={ProjectListApp} />
+            <Route path= {'/ScenariosFormApp'} component={ScenariosFormApp} />
         </Switch>
     )
 }
