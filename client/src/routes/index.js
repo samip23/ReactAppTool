@@ -48,7 +48,7 @@ function Routes() {
             <Route path= {'/ProjectFormApp'} component={ProjectFormApp} />
             <Route path= {'/ProjectListApp'} component={ProjectListApp} />
             <Route path= {'/ScenariosFormApp'} component={ScenariosFormApp} />
-            <Route path= {'/'} exact component={Login} />
+           {/* <Route path= {'/'} exact component={Login} /> */}
         </Switch>
     )
 }

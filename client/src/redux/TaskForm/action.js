@@ -22,7 +22,7 @@ export const startAddTask = (taskData= {}) => {
     } = taskData;
     const task = { taskName, taskAssignee, taskPriority, date, progressV};
     console.log(taskData)
-    // dispatch(addTask(taskData))
+    dispatch(addTask(taskData))
 
     database.ref('tasks').push(taskData)
     .then((ref) => {
